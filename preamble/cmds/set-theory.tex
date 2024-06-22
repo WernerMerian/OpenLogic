@@ -1,0 +1,106 @@
+% Special Sets and Mathematical Symbols
+% -------------------------------------
+
+% ### Set-theoretic operators
+
+% - Set abstracts: Use `\Setabs{x}{!A(x)}` to produce the set abstract
+% $\{ x : \varphi(x) \}$. If you prefer a $\mid$ to :, change the
+% definition accordingly.
+
+\DeclareDocumentCommand \Setabs { m m }{\{ #1 : #2 \}}
+
+% - Fregean extensions: Use `\fregeext{x}{!A(x)}` to produce
+%   $\epsilon x\, !A(x)$.
+
+\DeclareDocumentCommand \fregeext { m m }{\oldepsilon #1 \, #2 }
+
+% - Fregean number: Use `\fregenum{x}{!A(x)}` to produce 
+%   $\# x\, !A(x)$.
+
+\DeclareDocumentCommand \fregenum { m m }{\# #1 \, #2 }
+
+
+% - `\Pow{X}`: Power set, produces $\wp(X)$
+
+\DeclareDocumentCommand \Pow { m }{\wp(#1)}
+
+% - `\dom{f}`: domain of a function
+
+\DeclareDocumentCommand \dom { m }{\fn{dom}(#1)}
+
+% - `\ran{f}`: range of a function
+\DeclareDocumentCommand \ran { m }{\fn{ran}(#1)}
+
+% - `\len{s}`: length of a sequence
+\DeclareDocumentCommand \len { m }{\fn{len}(#1)}
+
+% - `\emptyseq`: the empty sequence
+\DeclareDocumentMacro \emptyseq {\Lambda}
+
+% - `\restrict`: restriction of a function to a set (infix operator)
+\DeclareDocumentMacro \restrict {\upharpoonright}
+
+% - `\Complement{X}`: complement of a set
+\DeclareDocumentCommand \Complement { m } {\overline{#1}}
+
+% - `\card{X}`: cardinality of a set
+\DeclareDocumentCommand \card { m } {\left| #1 \right|}
+
+% - `\cardle{X}{Y}`: X is no larger than Y
+\DeclareDocumentCommand \cardle { m m } {#1 \preceq #2}
+
+% - `\cardless{X}{Y}`: X is smaller than Y
+\DeclareDocumentCommand \cardless { m m } {#1 \prec #2}
+
+% - `\cardeq{X}{Y}`: X is equinumerous with Y
+\DeclareDocumentCommand \cardeq { m m } {#1 \approx #2}
+
+% - `\tuple{x,y}`: pairs, tuples, sequences
+\DeclareDocumentMacro \openTuple {\langle}
+\DeclareDocumentMacro \closeTuple {\rangle}
+\DeclareDocumentCommand \tuple { m } {\openTuple #1 \closeTuple}
+
+% - `\comp{f}{g}`: composition of f with g, defaults to $g \circ f$
+\DeclareDocumentCommand \comp { m m }{#2 \circ #1}
+
+% - `\pto`: partial function arrow
+
+\DeclareDocumentMacro \pto {\mathrel{\ooalign{\hfil$\mapstochar\mkern
+			5mu$\hfil\cr$\to$}}}
+
+% - `\fdefined`, `\fundefined`: postfix for defined, undefined
+% functions
+
+\DeclareDocumentMacro \fdefined {\downarrow}
+\DeclareDocumentMacro \fundefined {\uparrow}
+
+% - `cutrank`: cut rank
+
+\DeclareDocumentCommand \cutrank { m }{\fn{cr}(#1)}
+
+% - `maxrank`: max rank
+
+\DeclareDocumentCommand \maxrank { m }{\fn{mr}(#1)}
+
+% ### Particular sets
+
+% - Natural numbers: `\Nat`
+\DeclareDocumentMacro \Nat {\mathbb{N}}
+
+% - Integers: `\Int`
+\DeclareDocumentMacro \Int {\mathbb{Z}}
+
+% - Positive integers: `\PosInt`
+\DeclareDocumentMacro \PosInt {\mathbb{Z}^+}
+
+% - Real numbers: `\Real`
+\DeclareDocumentMacro \Real {\mathbb{R}}
+
+% - Rational numbers: `\Rat`
+\DeclareDocumentMacro \Rat {\mathbb{Q}}
+
+% - The set $\{0, 1\}$: `\Bin`
+\DeclareDocumentMacro \Bin {\mathbb{B}}
+
+% - Identity relation: `\Id{X}`
+\DeclareDocumentCommand \Id { m } {\mathord{\mathrm{Id}_{#1}}}

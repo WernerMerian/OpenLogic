@@ -2,66 +2,115 @@
 # Makefile
 
 # YOU DO NOT HAVE TO USE THIS MAKEFILE
-# Just run pdflatex on whichever tex file you want to compile
+# Just run pdflatex on whichever tex file you want to
+# compile
 # The job of this makefile is to compile *everything*
- 
-# Requires latexmk https://www.ctan.org/pkg/latexmk/
-# The PDF of the open-logic-config documentation also requires
-# pandoc http://pandoc.org/
 
-.PHONY : FORCE_MAKE
+# Requires `latexmk` [https://www.ctan.org/pkg/latexmk/]
+# The PDF of `the open-logic-config` documentation also
+# requires `pandoc` [http://pandoc.org/]
 
-ALLTEXFILES = open-logic-debug.tex open-logic-complete.tex \
-	$(shell grep 'INPUT content/.*/.*\.tex' open-logic-debug.fls | uniq | sed 's/INPUT //g' )
 
-ALLPDFFILES = $(ALLTEXFILES:.tex=.pdf)
 
-all: open-logic-debug.pdf open-logic-complete.pdf
 
-content/open-logic.pdf:
+# IO
 
-everything: $(ALLPDFFILES) open-logic-config.pdf index.html
+PROJECT        = open-logic
 
-courses: FORCE_MAKE
-	for course in courses/* ; do \
-		make -C $$course ;\
-	done
+MAIN           = main.tex
 
-branches: FORCE_MAKE
-	git checkout master
-	for branch in `git branch --list --no-column |grep -v master` ; do \
-		git checkout $$branch ;\
-		latexmk -pdf -dvi- -ps- open-logic-debug ;\
-		latexmk -pdf -dvi- -ps- open-logic-complete ;\
-		mkdir -p branches/$$branch ;\
-		cp open-logic-debug.pdf open-logic-complete.pdf branches/$$branch ;\
-	done 
-	git checkout master
-	latexmk -pdf -dvi- -ps- open-logic-debug
-	latexmk -pdf -dvi- -ps- open-logic-complete
+BIB_DIR        = bib/
+CONTENT_DIR    = content/
+ASSETS_DIR     = assets/
+PREAMBLE_DIR   = preamble/
 
-open-logic-config.pdf: open-logic-config.sty
-	grep -e "^%" -e "^$$" open-logic-config.sty | cut --bytes=3-|pandoc -f markdown -M date="`git log --format=format:"%ad %h" --date=short -1 open-logic-config.sty`" -o open-logic-config.pdf
+CONTENT_FILES  = $(shell find $(CONTENT_DIR) -type f)
+ASSET_FILES    = $(shell find $(ASSETS_DIR) -type f)
+PREAMBLE_FILES = $(shell find $(PREAMBLE_DIR) -type f)
 
-%.pdf : %.tex FORCE_MAKE
-	latexmk -pdf -dvi- -ps- -cd $<
+BUILD_DIR      = build/
+MINTED_DIR     = _minted-main/
+INKSCAPE_DIR   = svg-inkscape/
 
-clean:	
-	latexmk -c $(ALLTEXFILES)
+OUT_DIR        = out/
 
-clean-all:
-	latexmk -C $(ALLTEXFILES)
+FINAL_JOBNAME  = final
+FINAL_PDF      = $(FINAL_JOBNAME).pdf
+DEBUG_JOBNAME  = debug
+DEBUG_PDF      = $(DEBUG).pdf
 
-index.html: FORCE_MAKE
-	git checkout master
-	cp misc/index.start.html index.html
-	for branch in `git branch --list --no-column |grep -v master` ; do \
-		echo "<li>$$branch: <a href=\"branches/$$branch/open-logic-debug.pdf\">debug</a> | <a href=\"branches/$$branch/open-logic-complete.pdf\">complete</a></li>" >> index.html ;\
-	done 
-	echo "</ol>" >> index.html
-	echo "<h2>Parts, Chapters, Sections</h2>" >> index.html
-	misc/htmltoc content content | sed "1d" >> index.html
-	echo "<p>Generated from Git revision <code>" >> index.html
-	grep shash .git/gitHeadInfo.gin |sed 's/[^{]*{\([^}]*\)},/\1/' >>index.html
-	grep authsdate .git/gitHeadInfo.gin |sed 's/[^{]*{\([^}]*\)},/(\1)/' >> index.html
-	echo "</code></p></div></div></div></body></html>" >> index.html
+
+# LaTeX COMPILER
+
+PACKAGES_DIR   = $(PREAMBLE_DIR)packages/
+
+LATEXMK        = latexmk
+LATEXMK_FLAGS  = -pdf -outdir=$(BUILD_DIR) -shell-escape
+LATEXMKRD      = .latexmkrd
+
+DEPS           = $(MAIN) $(CONTENT_FILES) $(ASSET_FILES) $(PREAMBLE_FILES) # $(MAIN) $(LATEXMKRD) $(CONTENT_FILES) $(ASSET_FILES) $(PREAMBLE_FILES)
+
+
+# RULES FORCED TO BE REPLAYED EVERY TIME
+# and even if the target is up to date
+
+.PHONY: all final debug clean mrproper
+
+
+# RULES FOR PRODUCTION
+
+all: final debug
+
+
+final: $(OUT_DIR)$(FINAL_PDF)
+
+$(OUT_DIR)$(FINAL_PDF): $(BUILD_DIR)$(FINAL_PDF) | $(OUT_DIR)
+	cp $< $@
+
+$(BUILD_DIR)$(FINAL_PDF): $(DEPS) | $(BUILD_DIR)
+	$(TIME) $(LATEXMK) $(LATEXMK_FLAGS) \
+		-jobname=$(FINAL_JOBNAME) \
+		-pretex="\AtBeginDocument{\debugfalse}" -usepretex \
+		-recorder \
+		$(MAIN)
+
+
+debug: $(OUT_DIR)$(DEBUG_PDF)
+
+$(OUT_DIR)$(DEBUG_PDF): $(BUILD_DIR)$(DEBUG_PDF) | $(OUT_DIR)
+	cp $< $@
+
+$(BUILD_DIR)$(DEBUG_PDF): $(DEPS) | $(BUILD_DIR)
+	$(TIME) $(LATEXMK) $(LATEXMK_FLAGS) \
+		-jobname=$(DEBUG_JOBNAME) \
+		-pretex="\AtBeginDocument{\debugtrue}" -usepretex \
+		-recorder \
+		$(MAIN)
+
+
+$(BUILD_DIR) $(OUT_DIR):
+	mkdir $@
+
+
+# RULES FOR SOURCE CODE FORMATING
+
+code-formating:
+	@echo TODO
+
+
+# RULES FOR CLEANING
+
+clean:
+# start by cleaning the content/ directory from all its section compilation files
+	find $(CONTENT_DIR) -type f -not -name "*.tex" -delete
+# then remove master compilation directories
+	$(RM) -r $(BUILD_DIR) $(MINTED_DIR) $(INKSCAPE_DIR)
+
+mrproper: clean
+	$(RM) -r $(OUT_DIR)
+
+
+# RULES FOR ARCHIVING
+
+tar: mrproper
+	tar -cvzf $(PROJECT).tar.gz $(BIB_DIR) $(CONTENT_DIR) $(ASSETS_DIR) $(PREAMBLE_DIR) LICENSE.md README.md Makefile $(MAIN) $(LATEXMKRD)

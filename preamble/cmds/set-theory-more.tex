@@ -1,0 +1,66 @@
+% Additional set theory stuff
+% ================
+% From Tim Button's Open Set Theory
+
+\DeclareDocumentMacro \unitline {\text{L}}
+\DeclareDocumentMacro \unitsquare {\text{S}}
+\newcommand{\onesphere}{\mathbf{S}}
+\newcommand\rotationsgroup{R}
+
+\DeclareDocumentCommand \cardneq { m m } {#1 \not\approx #2}
+\DeclareDocumentCommand \cardnless { m m } {#1 \npreceq #2}
+\DeclareDocumentCommand \ordeq { m m } {#1 \cong #2}
+\DeclareDocumentCommand \ordneq { m m } {#1 \ncong #2}
+\DeclareDocumentCommand \funimage { m m } {#1[#2]}
+
+\newcommand\stageshier{\emph{Stages-are-key}}
+\newcommand\stagesord{\emph{Stages-are-ordered}}
+\newcommand\stagesacc{\emph{Stages-accumulate}}
+\newcommand\stagessucc{\emph{Stages-keep-going}}
+\newcommand\stagesinf{\emph{Stages-hit-infinity}}
+\newcommand\limofsize{\emph{Limitation-of-size}}
+\newcommand\stagesinex{\emph{Stages-are-inexhaustible}}
+\newcommand\stagescofin{\emph{Stages-are-super-cofinal}}
+
+\usetikzlibrary{lindenmayersystems}
+\pgfdeclarelindenmayersystem{Hilbert curve}{
+	\rule{L -> +RF-LFL-FR+}
+	\rule{R -> -LF+RFR+FL-}}
+
+\newcommand\closureofunder[2]{\mathrm{clo}_{#1}(#2)}
+\newcommand\Closureofunder[2]{\mathrm{Clo}_{#1}(#2)}
+\newcommand\equivrep[2]{[#1]_{#2}}
+\newcommand\equivclass[2]{#1/_{\!{#2}}}
+\newcommand\Intequiv{\sim}
+\newcommand\Ratequiv{\backsim}
+\newcommand\Realequiv{\Bumpeq}
+\newcommand\funrestrictionto[2]{#1\mathord{\restriction}_{#2}}
+\newcommand\isomorphic{\cong}
+\newcommand\nisomorphic{\ncong}
+\newcommand\precdot{\mathrel{\prec{\mkern -12mu \cdot}}}
+\newcommand\disjointsum{\sqcup}
+\newcommand\ordtype[1]{\mathrm{ord}(#1)}
+\newcommand\ordsucc[1]{#1^{+}}
+\newcommand\cardsucc[1]{#1^{\oplus}}
+\newcommand\rlexless{\mathrel{\sphericalangle}}
+\newcommand\canonord\lhd
+\newcommand\ordplus{+}
+\newcommand\ordtimes{\cdot}
+\newcommand\ordexpo[2]{#1^{(#2)}}
+\newcommand\cardplus{\oplus}
+\newcommand\cardtimes{\otimes}
+\newcommand\cardexpo[2]{#1^{#2}}
+\newcommand\funfromto[2]{{}^{#1}{#2}}
+\newcommand\setrank[1]{\mathrm{rank}(#1)}
+\DeclareMathOperator*{\supstrict}{\mathrm{lsub}}
+\newcommand\trcl[1]{\mathrm{trcl}(#1)}
+\newcommand\ZF{\Th{ZF}}
+\newcommand\SP{\Th{SP}}
+\newcommand\ZFC{\Th{ZFC}}
+\newcommand\Z{\Th{Z}}
+\newcommand\ZFminus{\ZF^{-}}
+\newcommand\Zminus{\Z^{-}}
+\newcommand\Zr{\Th{Zr}}
+\newcommand\LT{\Th{LT}}
+
+\newcommand\cardfont[1]{\mathfrak{#1}}

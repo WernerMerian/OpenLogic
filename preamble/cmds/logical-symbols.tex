@@ -1,0 +1,116 @@
+% Logical symbols
+% ---------------
+
+% The following commands are used in the OLP texts for logical
+% symbols. Their definitions can be customized to produce different
+% output.
+
+% ### Truth Values
+%
+% - `\True` defaults to $\mathbb{T}$ and `\False` to $\mathbb{F}$.
+
+\DeclareDocumentMacro \True {\ensuremath{\mathbb{T}}}
+\DeclareDocumentMacro \False {\ensuremath{\mathbb{F}}}
+
+% Other truth values
+
+\DeclareDocumentMacro \Indet {\ensuremath{\mathbb{I}}}
+\DeclareDocumentMacro \Undef {\ensuremath{\mathbb{U}}}
+
+% ### Propositional Constants and Connectives
+%
+% - Falsity is `\lfalse` and defaults to $\bot$.
+
+\DeclareDocumentMacro \lfalse {\bot}
+
+% - Truth is `\ltrue` and defaults to $\top$.
+
+\DeclareDocumentMacro \ltrue {\top}
+
+% - Negation is `\lnot` and defaults to $\lnot$.  To use a different
+% symbol (e.g., tilde), use the following line.
+
+% `\DeclareDocumentMacro \lnot {\mathord{\sim}}`
+
+% - Conjunction is `\land` and deaults to $\land$.  to use ampersand,
+% uncomment the following line
+
+% `\DeclareDocumentMacro \land {\mathbin{\&}}`
+
+% - Disjunction is `\lor` and defaults to $\lor$.
+
+% - Conditional is `\lif` and defaults to $\rightarrow$.  To use a
+% different symbol, replace `\rightarrow` in the definition, e.g., by
+% `\supset`
+
+\DeclareDocumentMacro \lif {\mathbin{\rightarrow}}
+
+% - The biconditional is `\liff` and defaults to $\leftrightarrow$.  To
+% use the triple bar $\equiv$ replace with `\equiv`.
+
+\DeclareDocumentMacro \liff {\mathbin{\leftrightarrow}}
+
+% - The conditional `\cif` and defaults to `\boxright` which produces
+% - Lewis's box-arrow symbol.
+
+\DeclareDocumentMacro \cif {\boxright}
+
+% - The strict conditional `\strictif`
+
+\DeclareDocumentMacro \strictif {\fishhookright}
+
+% Quantifiers 
+% ----------- 
+
+% The quantifier symbols are provided as commands `\lexists` and
+% `\lforall` which take two optional arguments. If no arguments are
+% provided, it they just typeset the quantifier symbol. With one
+% optional argument they produce the quantifier together with a
+% variable, and this may include parenthesesaround the quantifier and
+% variable. The second optional argument producesthe
+% quantifier/variable combination plus the formula in the scope of the
+% formula with appropriate spacing.  For instance,
+% `\lexists[x][!A(x)]` will, by default, produce $\exists
+% x\,\varphi(x)$.
+
+% - The existential quantifier is `\lexists`.  Replace `\exists` with
+% `\boldsymbol{\exists}` for boldface, or redefine appropriately if
+% you want parentheses around $\exists x$.
+
+\DeclareDocumentCommand \lexists { t{!} o o } {
+	\exists 
+	\IfBooleanTF {#1} 
+	\mathexclaim    % unique
+	\relax % not unique
+	\IfNoValueTF {#2} 
+	\relax     % no arguments
+	{ #2 } % one argument: variable
+	\IfNoValueTF {#3} 
+	\relax
+	{ \, #3 }      % two arguments: space and matrix
+}
+
+% - The universal quantifier is `\lforall`.
+
+\DeclareDocumentCommand \lforall { o o } {
+	\IfNoValueTF {#1} 
+	{ \forall }    % no arguments
+	{ \forall #1 } % one argument: variable
+	\IfNoValueTF {#2} 
+	\relax
+	{ \, #2 }      % two arguments: space and matrix
+}
+
+% - The identity relation is also provided as `\eq`. By itself, it
+% produces the identity reation symbol (default: $=$) by itself. With
+% two optional arguments, it typesets the corresponding atomic
+% formula, e.g., `\eq[x][y]` produces $x = y$.  `\eq/` produces the
+% negated symbol (formula).
+
+\DeclareDocumentCommand \eq { t{/} o o } {
+	\IfNoValueTF {#3}
+	% no optional arguments: just typeset symbol
+	{ \IfBooleanTF{#1}{ \neq }{ = } }
+	% optional arguments: typeset atomic formula
+	{ \IfBooleanTF{#1}{ #2 \neq #3}{#2 = #3} }
+}

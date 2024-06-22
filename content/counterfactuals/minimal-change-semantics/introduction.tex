@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{cnt}{min}{int}
-
-\olsection{Introduction}
+\olsection{cnt}{min}{int}{Introduction}
 
 Stalnaker and Lewis proposed accounts of counterfactual conditionals
 such as ``If the match were struck, it would light.''  Their accounts
@@ -50,15 +48,7 @@ concentric circles. The worlds between two spheres are equally close
 to the world at the center as each other, those contained in a nested
 sphere are closer, and those in a surrounding sphere further away.
 \begin{center}
-\begin{tikzpicture}[scale=.7]\small
-  \spheresystem{5}
-  \draw (0,0) node {$w$};
-  \propositionintersect{0}{4}{40}{3.5}
-  {\tikzset{proposition/.append={smooth,tension=1.4}}
-  \proposition[shift={(1.6,-1)}]{90}{1}{30}{4}}
-  \path (1.5,3) node[below] {$\formula{B}$};
-  \path (3,0) node {$\formula{A}$};
-\end{tikzpicture}
+  \olasset{\olpath/assets/tikzpictures/counterfactuals/introduction.tikz}
 \end{center}
 The closest $!A$-worlds are those worlds $w'$ where~$!A$ is satisfied
 which lie in the smallest sphere around the center world~$w$ (the gray

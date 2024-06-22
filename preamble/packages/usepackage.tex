@@ -1,0 +1,585 @@
+% file: usepackage.tex
+
+% Master Style Package
+% load various required standard packages
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- CHARACTER FORMATTING [1/2] -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- FONTS -----%
+
+\usepackage{lmodern}
+
+
+%----- MATH FONTS -----%
+
+\usepackage{mathpazo}
+
+\usepackage{helvet}
+
+\usepackage{courier}
+
+\linespread{1.05} % Palatino looks better with this
+
+\usepackage[OMLmathsfit]{isomath}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%----- ENCODINGS -----%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- OUTPUT ENCODING -----%
+
+\usepackage[T1]{fontenc}
+
+%\usepackage[T1]{tipa}
+
+
+%----- INPUT ENCODING -----%
+
+\usepackage[utf8]{inputenc}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING OF ALGORITHMS AND PROGRAMMES -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- FORMATTING ALGORITHMS -----%
+
+%\usepackage[
+%	linesnumbered,
+%	ruled,
+%	vlined,
+%	nofillcomment
+%]{algorithm2e}
+
+
+%----- FORMATTING SOURCE CODES -----%
+
+%\usepackage{minted}
+%\usemintedstyle{emacs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- CHARACTER FORMATTING [2/2] -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- FONTS -----%
+
+% \usepackage{lettrine} % see wrapper
+
+
+%----- TYPOGRAPHY -----%
+
+\usepackage[english]{babel}
+
+\usepackage{microtype}
+
+\usepackage{csquotes}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%----- EMPHASIS -----%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%----- UNDERLINE -----%
+
+\usepackage{soul}
+
+
+%----- FRAMES -----%
+
+\usepackage{framed}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING TITLES -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- TITLE STYLES -----%
+
+%\usepackage[Lenny]{fncychap}
+
+
+%----- TITLE NUMBERING -----%
+
+\setcounter{secnumdepth}{3}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING LISTS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- UNORDERED LISTS -----%
+
+\usepackage[inline]{enumitem}
+\setlist[itemize, 1]{label=\textbullet}
+\setlist[itemize, 2]{label=$\circ$}
+\setlist[itemize, 3]{label={\tiny$\blacksquare$}}
+\setlist[itemize, 4]{label={\tiny$\square$}}
+
+
+%----- ORDERED LISTS -----%
+
+\usepackage{moreenum}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING THEOREMS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- FORMATTING THEOREMS -----%
+
+%\usepackage{amsthm}
+
+% Load ntheorem as theorem backend thmmarks, amsmath options necessary
+% for proper placement of proof end markers. amsthm option provides
+% standard theorem styles. 
+\usepackage[
+	thmmarks,
+	amsmath,
+	amsthm,
+	hyperref
+]{ntheorem}
+
+% Load thmtools for nice formatting of theorem environments
+\usepackage{thmtools}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING EQUATIONS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- EQUATION NUMBERING -----%
+
+\numberwithin{equation}{chapter}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%----- COLOURING -----%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- TEXT COLORING -----%
+
+\usepackage[
+	x11names*,
+	svgnames*,
+	dvipsnames,
+]{xcolor}
+\input{\olpath/preamble/packages/config/config-xcolor.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- FORMATTING PARATEXTUAL CONTENT -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- EPIGRAPHS -----%
+
+\usepackage{epigraph}
+
+
+%----- NOTES -----%
+
+\usepackage{footnote}
+
+\usepackage{marginnote}
+
+\usepackage{endnotes}
+
+
+%----- AFFILIATION -----%
+
+%\usepackage{authblk}
+%\input{\olpath/preamble/packages/config/config-authblk.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- SPECIAL SYMBOLS AND SPECIFIC NOTATIONS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- AMS MATHEMATICAL SYMBOLS AND NOTATIONS -----%
+
+\usepackage{amsmath}
+
+\usepackage{amssymb}
+
+
+%----- OTHER MATHEMATICAL SYMBOLS AND NOTATIONS -----%
+
+\usepackage{latexsym} 
+
+\usepackage{mathtools}
+
+\usepackage{mathrsfs}
+
+\usepackage{dsfont}
+
+\usepackage{xfrac}
+
+\usepackage{nicefrac}
+
+\usepackage{cancel}
+
+\usepackage{centernot}
+
+\usepackage{mathdots}
+
+\usepackage{empheq}
+
+
+%----- COMPUTER SCIENCE SYMBOLS AND NOTATIONS -----%
+
+\usepackage[
+	classfont = sanserif, % for the complexity classes of algorithmic problems (P, NP, PSPACE, ENUM, #P...) we want \textsf
+	langfont  = caps, % for algorithmic problems (Sat, SubsetSum, VertexCover...) we want \textsc
+	funcfont  = sanserif, % for the asymptotic growth classes of functions (poly, subexp...) (for example used in P/poly) we want \sanserif
+	full,
+	disableredefinitions,
+]{complexity}
+
+
+%----- LOGICAL SYMBOLS AND NOTATIONS -----%
+
+\usepackage{cmll}
+
+\usepackage{bussproofs}
+\input{\olpath/preamble/packages/config/config-bussproofs.tex}
+\usepackage{bussproofs-extra}
+
+\usepackage[
+	tableaux,
+]{prooftrees}
+\input{\olpath/preamble/packages/config/config-prooftrees.tex}
+
+\usepackage{formal-grammar}
+
+
+%----- OTHER SYMBOLS AND NOTATIONS -----%
+
+\usepackage{stmaryrd}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- TABLES, FIGURES AND GRAPHIC ARRANGEMENTS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- FIGURES -----%
+
+\usepackage{graphicx}
+\graphicspath{{\olpath/assets/images/}}
+
+\usepackage{svg}
+\svgpath{{\olpath/assets/images/}}
+\svgsetup{inkscapelatex=false}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{automata}
+\usetikzlibrary{intersections}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+\input{\olpath/preamble/packages/config/config-tikz.tex}
+
+\usepackage{tikzscale}
+
+\usepackage{tikz-cd}
+
+\usepackage{ptolemaicastronomy}
+
+
+%----- TABLES -----%
+
+\usepackage{tabularx}
+
+\usepackage{longtable}
+
+\usepackage{multirow}
+
+\usepackage{array}
+
+\usepackage{booktabs}
+
+\usepackage{diagbox}
+
+
+%----- CAPTION -----%
+
+\usepackage{caption}
+
+\usepackage{subcaption}
+
+
+%----- NUMBERING OF TABLES AND FIGURES -----%
+
+% make tables and figures share the same counter as equations
+
+\makeatletter
+\let\c@table\c@equation
+\let\c@figure\c@equation
+\makeatother
+\numberwithin{table}{chapter}
+\numberwithin{figure}{chapter}
+
+
+%----- GRAPHIC ARRANGEMENTS -----%
+
+\usepackage{float}
+
+\usepackage{wrapfig}
+
+\input{insbox.tex}
+
+\usepackage{adjustbox}
+
+\usepackage{graphbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- INDEXING TEXT ELEMENTS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- TABLE OF CONTENTS -----%
+
+\usepackage{shorttoc}
+
+
+%----- BIBLIOGRAPHICAL REFERENCES -----%
+
+\usepackage[
+	backend     = biber,
+	style       = alphabetic,
+	sorting     = nty,
+	maxbibnames = 99,
+	backref     = true,
+]{biblatex}
+\addbibresource{\olpath/bib/references.bib}
+
+%----- INDEX -----%
+
+\usepackage[
+	splitindex,%
+]{imakeidx}
+%\input{\olpath/preamble/packages/config/config-imakeidx.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%----- LAYOUT -----%
+%%%%%%%%%%%%%%%%%%%%
+
+%----- ROTATING -----%
+
+\usepackage{rotating}
+
+
+%----- PAGING -----%
+
+\usepackage{changepage}
+
+
+%----- MARGIN MANAGEMENT -----%
+
+\usepackage{geometry}
+%\input{\olpath/preamble/packages/config/config-geometry.tex}
+
+
+%----- HEADERS AND FOOERS -----%
+
+\usepackage{fancyhdr}
+%\input{\olpath/preamble/packages/config/config-fancyhdr.tex}
+
+
+%----- TABLE OF CONTENTS -----%
+
+% Provides control over the typography of the Table of Contents,
+% List of Figures and List of Tables
+\usepackage{tocloft}
+% Increase the space reserved for the section numbers in the table of contents
+% (else some entries will look like "10.11Soundness" without any separation
+% between the number and the title)
+\input{\olpath/preamble/packages/config/config-tocloft.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%----- IMPORTING -----%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- TeX FILES -----%
+
+\usepackage{catchfile}
+
+\usepackage{subfiles}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%----- META LaTeX -----%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- META KERNEL -----%
+
+\usepackage{morewrites}
+
+
+%----- META MACROS -----%
+
+\usepackage{xspace}
+
+\usepackage{xparse}
+
+\usepackage{ifthen}
+
+\usepackage{etoolbox}
+
+
+%----- META ENVIRONNEMENTS -----%
+
+\usepackage{environ}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- CORRECTION, REVISION AND RECTIFICATION -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- REVIEW NOTES -----%
+
+\usepackage{todonotes}
+
+
+%----- COMMENTS -----%
+
+\usepackage{comment}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%----- DEBUGGING -----%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- DEBUGGING TEXTS -----%
+
+\usepackage{lipsum}
+
+\usepackage{blindtext}
+
+
+%----- EXTERNAL INFORMATION -----%
+
+\usepackage[
+	useregional,
+]{datetime2}
+%\input{\olpath/preamble/packages/config/config-datetime2.tex}
+
+\usepackage{gitinfo2}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- HYPERTEXT LINKS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- NOTATIONS -----%
+
+%\usepackage{knowledge}
+
+
+%----- HYPER-LINKS -----%
+
+\usepackage{hyperref}
+\input{\olpath/preamble/packages/config/config-hyperref.tex}
+
+
+%----- BACK-REFERENCES -----%
+
+\usepackage[%
+	symbol       = $\uparrow\;$,%
+	numberlinked = false,%
+]{footnotebackref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- MANAGEMENT OF LABELS AND REFERENCES -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- LABELS -----%
+
+% Load cleverref for automatic includion of theorem names in references
+\usepackage[
+	nameinlink,
+	noabbrev,
+]{cleveref} % always after hyperref!
+%\input{\olpath/preamble/packages/config/config-amsthm.tex} % need to declare theorem like envs after cleveref importation
+\input{\olpath/preamble/packages/config/config-cleveref.tex}
+
+
+%----- REFERENCES -----%
+
+\usepackage{zref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- INDEXING TITLE ELEMENTS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- INDEXING DEPTH -----%
+
+\setcounter{tocdepth}{2}
+
+
+%----- SUB-CONTENTS -----%
+
+% Load minitoc to get a table of contents at the start of each chapter
+\usepackage{minitoc} % always after cleveref!
+%\input{\olpath/preamble/packages/config/config-minitoc.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- REGROUPEMENT OF NOTATIONS AND EXPRESSIONS -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- GLOSSARIES -----%
+
+\usepackage[
+	toc,
+]{glossaries}
+%\input{\olpath/preamble/packages/config/config-glossaries.tex}
+
+
+%----- NOTATIONS -----%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- LOCAL PACKAGES -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{\olpath/preamble/packages/local/goedelnumbers}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%----- PATCHES -----%
+%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{\olpath/preamble/packages/patches/patch-footnotes}

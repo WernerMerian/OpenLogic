@@ -1,0 +1,77 @@
+% Typesetting commands for logical concepts
+% =========================================
+
+% In order to unformly typeset certain types of symbols uniformly, the
+% OLP texts use special commands which carry out the
+% typesetting. Thus, e.g., all structures, which appear in the texts,
+% say, as `\Struct{M}`, can be typeset according to preference. By
+% default, they are typeset in fraktur (e.g., $\mathfrak{M}$) but this
+% can be configured by changing the definition of the `\Struct`
+% command.  Note that often the default behavior is to only apply the
+% typeface command to the first token in the argument, e.g., `\Struct
+% M_n` will generate $\mathfrak M_n$ and not $\mathfrak{M_n}$.
+
+% - `\Struct{M}` - First-order structures; by default, the first token
+% in Fraktur
+
+% `\applytofirst` will apply #1 to #2 after expanding #2 once.
+
+\def\applytofirst#1#2{{\expandafter#1#2}}
+
+\DeclareDocumentCommand \Struct { m }{\applytofirst{\mathfrak}{#1}}
+
+% - `\Lang{L}` - Languages; default: set first token in callgraphic
+% font
+
+\DeclareDocumentCommand \Lang { m }{\applytofirst{\mathcal}{#1}}
+
+% - `\Log{L}` - Logics; default: set entirely in boldface
+
+\DeclareDocumentCommand \Log { m o }{\ensuremath{\mathbf{#1}
+		\IfNoValueTF {#2}{}{_{#2}}}}
+
+% - Some logics
+
+\DeclareDocumentMacro {\LogCL} {\Log{C}}
+\DeclareDocumentMacro {\LogIL} {\Log{I}}
+\DeclareDocumentMacro {\LogLuk} {\Log{\textbf{\L}}}
+\DeclareDocumentMacro {\LogGod} {\Log{G}}
+\DeclareDocumentMacro {\LogKs} {\Log{Ks}}
+\DeclareDocumentMacro {\LogKw} {\Log{Kw}}
+\DeclareDocumentMacro {\LogLP} {\Log{LP}}
+\DeclareDocumentMacro {\LogRM} {\Log{RM}}
+\DeclareDocumentMacro {\LogHal} {\Log{Hal}}
+
+
+% - `\Obj` - Object-language symbols; default: set entirely in
+% sans-serif italics
+
+\DeclareDocumentCommand \Obj { m }{\mathsfit{#1}}
+
+%  - `\Term{f}{t_1, t_2)` - Term; default produces
+%  function symbol followed by arguments surrounded by
+%  parentheses. Some prefer no parentheses around the arguments.
+
+\DeclareDocumentCommand \Term { m m }{ \mathord{#1}(#2) }
+
+%  - `\Atom{R}{t_1, t_2)` - Atomic formula; default produces
+%  predicate symbol followed by arguments surrounded by
+%  parentheses. Some prefer no parentheses around the arguments.
+
+\DeclareDocumentCommand \Atom { m m }{ \mathord{#1}(#2) }
+
+% - `\Ax{A}`: typeset an axiom
+
+\DeclareDocumentCommand \Ax { m } {\ensuremath{\mathrm{#1}}}
+
+% - `\PIso` - Set of all partial isomorphisms
+
+\DeclareDocumentCommand \PIso { m }{\mathcal{#1}}
+
+% - `\fn{func}` -- typeset a function name
+
+\DeclareDocumentCommand \fn { m } {\mathrm{#1}}
+
+% - `\Th{T}` -- typeset name of a theory
+
+\DeclareDocumentCommand \Th { m } {\mathbf{#1}}

@@ -1,0 +1,29 @@
+% ### Functions and Function/Relation symbols
+
+% - `\Part`: the parthood predicate 
+
+\DeclareDocumentCommand \Part { m m } {\Atom{\Obj P}{#1, #2}}
+
+% - `\Prf`: the proof relation
+
+\DeclareDocumentCommand \Prf { o } { \mathrm{Prf}\IfNoValueTF {#1} {} {_{#1}}}
+\DeclareDocumentCommand \OPrf { o } { \mathsf{Prf}\IfNoValueTF {#1} {} {_{#1}}}
+
+% - `\Refut`: the refutation relation
+
+\DeclareDocumentCommand \Refut { o } { \mathrm{Ref}\IfNoValueTF {#1} {} {_{#1}}}
+\DeclareDocumentCommand \ORefut { o } { \mathsf{Ref}\IfNoValueTF {#1} {} {_{#1}}}
+
+% - `\Prov`: the provability predicate
+
+\DeclareDocumentCommand \Prov { o } { \mathrm{Prov}\IfNoValueTF {#1} {} {_{#1}}}
+\DeclareDocumentCommand \OProv { o } { \mathsf{Prov}\IfNoValueTF {#1} {} {_{#1}}}
+
+% - `\RProv`: the Rosser provability relation
+
+\DeclareDocumentCommand \RProv { o } { \mathrm{RProv}\IfNoValueTF {#1} {} {_{#1}}}
+\DeclareDocumentCommand \ORProv { o } { \mathsf{RProv}\IfNoValueTF {#1} {} {_{#1}}}
+
+% - `\OCon`: the consistency statement
+
+\DeclareDocumentCommand \OCon { o } { \mathsf{Con}\IfNoValueTF {#1} {} {_{#1}}}

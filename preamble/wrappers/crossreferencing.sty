@@ -1,0 +1,207 @@
+% OpenLogic Project
+% Package for crossreferencing
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesFile{crossreferencing.sty}
+
+
+
+\RequirePackage{xparse}
+\RequirePackage{cleveref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- LABELS AND REFERENCES -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- SAVE SECTIONING IDs -----%
+
+\newcommand*{\theol@partid}{udf}
+\newcommand*{\theol@chapterid}{udf}
+\newcommand*{\theol@sectionid}{udf}
+
+
+%----- LABEL FORMATION MECHANISM -----%
+
+\def\ol@labelsep{:}
+
+\DeclareDocumentCommand \ol@makelabel { o o o m } {%
+	\IfNoValueTF {#1}%
+		{\theol@partid\ol@labelsep\theol@chapterid\ol@labelsep\theol@sectionid}%
+		{\IfNoValueTF {#2}%
+			{\theol@partid\ol@labelsep\theol@chapterid\ol@labelsep#1}%
+			{\IfNoValueTF {#3}%
+				{\theol@partid\ol@labelsep#1\ol@labelsep#2}%
+				{#1\ol@labelsep#2\ol@labelsep#3}%
+			}%
+		}%
+	\ol@labelsep#4%
+}
+
+
+%----- LABEL -----%
+
+\DeclareDocumentCommand \ollabel { o m }{%
+	\label[#1]{\ol@makelabel{#2}}%
+}
+
+
+%----- REFERENCES -----%
+
+\DeclareDocumentCommand \olref { o o o m } {%
+	\cref{\ol@makelabel[#1][#2][#3]{#4}}%
+}
+
+\DeclareDocumentCommand \Olref { o o o m } {%
+	\Cref{\ol@makelabel[#1][#2][#3]{#4}}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----- AUTO SECTION LABELING -----%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----- SET PART/CHAPTER/SECTION ID's -----%
+
+\newcommand*{\olpartid}[1]{
+	\renewcommand*{\theol@partid}{#1}
+}
+\newcommand*{\olchapterid}[2]{
+	\renewcommand*{\theol@partid}{#1}
+	\renewcommand*{\theol@chapterid}{#2}
+}
+\newcommand*{\olsectionid}[3]{
+	\renewcommand*{\theol@partid}{#1}
+	\renewcommand*{\theol@chapterid}{#2}
+	\renewcommand*{\theol@sectionid}{#3}
+}
+
+
+%----- AUTO PART LABELING -----%
+
+\def\ol@defaultpartcs{part}
+\def\olsetpart#1{\def\ol@partcs{#1}}
+\def\olresetpart{\let\ol@partcs\ol@defaultpartcs}
+\olresetpart
+
+% \olpart - make a part header and set a label for the part
+% Usage: \olpart[<alt-title>]{<part-id>}{<title>}
+% Refer to it: \olref[<part-id>][][]{part}
+% where "part" is really "part" as it is, i.e. written out in full
+
+\DeclareDocumentCommand \olpart { o o m m } {%
+	\ol@partcs[#1][#2]{#4}%
+	\olpartid{#3}%	
+	% We cannot use \ollabel here. Indeed, even if we set the chapter
+	% id and the part id via \olchapterid{#3}{#4}, the section id
+	% remains undefined (and that's normal!) . But it may be the case
+	% that a section id has already been set in a previous file
+	% (consider the case of "udf" in particular). Thus, we are forced
+	% to overwrite the section id with an empty identifier.
+	% Furthermore, instead of using \label{#3:::part} directly, we
+	% use \ol@makelabel in order to preserve the centralization of the
+	% label formation mechanism. But by passing empty optional
+	% arguments [] to \ol@makelabel, we are forced to re-give all of
+	% the optional arguments to \ol@makelabel (Which makes this
+	% information redundant but hey...).
+	\label{\ol@makelabel[#3][][]{part}}%
+	
+	\parttoc%
+}
+
+
+%----- AUTO CHAPTER LABELING -----%
+
+\def\ol@defaultchaptercs{chapter}
+\def\olsetchapter#1{\def\ol@chaptercs{#1}}
+\def\olresetchapter{\let\ol@chaptercs\ol@defaultchaptercs}
+\olresetchapter
+
+% \olchapter - make a chapter header and set a label for the chapter
+% Usage: \olchapter[<alt-title>]{<part-id>}{<chapter-id>}{<title>}
+% Refer to it: \olref[<part-id>][<chapter-id>][]{chap}
+% where "chap" is really "chap" as it is, i.e. written out in full
+
+\DeclareDocumentCommand \olchapter { o o m m m } {%
+	\ol@chaptercs[#1][#2]{#5}%
+	\olchapterid{#3}{#4}%
+	% We cannot use \ollabel here. Indeed, even if we set the chapter
+	% id and the part id via \olchapterid{#3}{#4}, the section id
+	% remains undefined (and that's normal!) . But it may be the case
+	% that a section id has already been set in a previous file
+	% (consider the case of "udf" in particular). Thus, we are forced
+	% to overwrite the section id with an empty identifier.
+	% Furthermore, instead of using \label{#3:#4::chap} directly, we
+	% use \ol@makelabel in order to preserve the centralization of the
+	% label formation mechanism. But by passing empty optional
+	% arguments [] to \ol@makelabel, we are forced to re-give all of
+	% the optional arguments to \ol@makelabel (Which makes this
+	% information redundant but hey...).
+	\label{\ol@makelabel[#3][#4][]{chap}}
+	
+	\minitoc%
+}
+
+
+%----- AUTO SECTION LABELING -----%
+
+\def\ol@defaultsectioncs{section}
+\def\olsetsection#1{\def\ol@sectioncs{#1}}
+\def\olresetsection{\let\ol@sectioncs\ol@defaultsectioncs}
+\olresetsection
+
+% \olsection - make a section header and set a label for the section
+% Usage: \olsection[<toc-title>][<header-title>]
+%            {<part-id>}{<chapter-id>}{<section-id>}{<title>}
+% Refer to it: \olref[<part-id>][<chapter-id>][<section-id>]{sec}
+% where "sec" is really "sec" as it is, i.e. written out in full
+
+% there is an asymmetry here in the macro arguments (the file id is set
+% separatly). Indeed, in the perspective of a
+% maximal factorization, some sections are shared between
+% multiple chapters (some minimal changes are made). For
+% example the completeness theorem file for first-order
+% logic is shared by the propositional logic. Thus there is
+% no section identity, but instead a file identity.
+
+%\DeclareDocumentCommand \olsection { o o m } {%
+%	\ol@sectioncs[#1][#2]{#3}%
+%	\label{sec}%
+%}
+
+\DeclareDocumentCommand \olsection { o o m m m m } {%
+	\ol@sectioncs[#1][#2]{#6}%
+	\olsectionid{#3}{#4}{#5}%
+	% Here we could have used \ollabel{sec} directly, as all id's
+	% were set via \olsectionid{#3}{#4}{#5}%. But for symmetry with
+	% \olchapter and \olpart, we use the following
+	\label{\ol@makelabel[#3][#4][#5]{sec}}%
+}
+
+% \nosection - sectioning command that supresses section header.
+
+\DeclareDocumentCommand \nosection { o m }{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%----- BRANCHING -----%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% \oliflabeldef - selectively output text iff a section label is
+% defined.
+% Usage: \oliflabeldef[<part-id>][<chapter-id>][<section-id>]
+%            {<label>}{<yes-text>}{<no-text>}
+%
+% Behavior: if <label> is defined (with possible prefixes with
+% the optional parameters), then output <yes-text>, otherwise
+% output <no-text>
+
+\DeclareDocumentCommand \oliflabeldef { o o o m m m }{%
+	\@ifundefined{r@\ol@makelabel[#1][#2][#3]{#4}}%
+		{#6}%
+		{#5}%
+}

@@ -6,17 +6,16 @@
 
 \begin{document}
 
-\olfileid{sfr}{fun}{cmp}
-\olsection{Composition of Functions}
+\olsection{sfr}{fun}{cmp}{Composition of Functions}
 
 \begin{explain}
-\oliflabeldef{sfr:fun:inv:sec}{We saw in \olref[inv]{sec} that the
+\oliflabeldef[sfr][fun][inv]{sec}{We saw in \olref[inv]{sec} that the
 inverse~$f^{-1}$ of !!a{bijection}~$f$ is itself a function. Another
 operation on functions is composition: w}{W}e can define a new
 function by composing two functions, $f$ and~$g$, i.e., by first
 applying $f$ and then~$g$. Of course, this is only possible if the
 ranges and domains match, i.e., the range of~$f$ must be a subset of
-the domain of~$g$. \oliflabeldef{sfr:rel:ops:sec}{This operation on
+the domain of~$g$. \oliflabeldef[sfr][rel][ops]{sec}{This operation on
 functions is the analogue of the operation of relative product on
 relations from \olref[rel][ops]{sec}.}{}
 
@@ -30,7 +29,16 @@ A$, first apply the function $f$ to~$x$, which will output some $f(x)
 = y \in B$, then apply the function $g$ to~$y$, which will output some
 $g(f(x)) = g(y) = z \in C$.
 \begin{figure}
-  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \begin{subfigure}{\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/before-composition.tikz}
+  	\caption{before composition}
+  \end{subfigure}
+  \begin{subfigure}{\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/after-composition.tikz}
+  	\caption{after composition}
+  \end{subfigure}
   \caption{The composition $g \circ f$ of two functions $f$ and~$g$.}
   \ollabel{fig:composition}
 \end{figure}

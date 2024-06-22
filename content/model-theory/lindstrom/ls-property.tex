@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{mod}{lin}{lsp}
-
-\olsection{Compactness and L\"owenheim--Skolem Properties}
+\olsection{mod}{lin}{lsp}{Compactness and L\"owenheim--Skolem Properties}
 
 We now give the obvious extensions of compactness and
 L\"owenheim--Skolem to the case of abstract logics.
@@ -87,21 +85,7 @@ and~$\Domain{N}*$.
 
 \begin{figure}[h]
   \centering
-  \begin{tikzpicture}[node distance=2cm, auto, thick, >=stealth']
-    \draw [rounded corners] (0,0) -- (8,0) -- (8,4) -- (0,4) --  cycle;
-    \draw (2,2) circle (0.5cm);
-    \draw (2,2) circle (1.25cm);
-    \draw (6,2) circle (0.5cm);
-    \draw (6,2) circle (1.25cm);
-    \path node at (0.75,3.5) {\large $\Struct{M}$};
-    \path node at (2,2) {\large $\Struct{M}$};
-    \path node at (6,2) {\large $\Struct{N}$};
-    \path node at (3.5,1) {\large $\Struct{M}^*$};
-    \path node at (7.5,1) {\large $\Struct{N}^*$};
-    \node (Idom) at (2.8,2) {};
-    \node (Irng) at (5.2,2) {};
-    \draw[<->, bend left] (Idom) to node {\large $I$} (Irng) ;
-  \end{tikzpicture} 
+  \olasset{\olpath/assets/tikzpictures/model-theory/part-iso.tikz}
   \caption{The !!{structure}~$\Struct{M}$ with the internal
     partial isomorphism.}
 \end{figure}

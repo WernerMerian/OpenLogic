@@ -1,0 +1,187 @@
+% Recursion-theoretic Notions and Symbols
+% ---------------------------------------
+
+% - `\Proj{n}{i}`: projection functions
+
+\DeclareDocumentCommand \Proj { m m } {P^{#1}_{#2}}
+
+% - `\Zero`: the constant zero function
+
+\DeclareDocumentMacro \Zero {\fn{zero}}
+
+% - `\Succ`: the successor function
+
+\DeclareDocumentMacro \Succ {\fn{succ}}
+
+% - `\Add`: the addition function
+
+\DeclareDocumentMacro \Add {\fn{add}}
+
+% - `\Mult`: the multiplication function
+
+\DeclareDocumentMacro \Mult {\fn{mult}}
+
+% - `\Exp`: the exponentiation function
+
+\DeclareDocumentMacro \Exp {\fn{exp}}
+
+% - `\Pred`: the successor function
+
+\DeclareDocumentMacro \Pred {\fn{pred}}
+
+% - `\tsub`: truncated subtraction function
+
+\DeclareDocumentMacro \tsub {\mathbin{\dot-}}
+
+% - `\Char{R}`: characteristic function
+
+\DeclareDocumentCommand \Char { m } {\chi_{#1}}
+
+% - `\defis`: definitional identity
+
+\DeclareDocumentMacro \defis {=} %{\mathrel{=_\mathrm{df}}}
+
+% - `\defiff`: definitional equivalence
+
+\DeclareDocumentMacro \defiff {\Leftrightarrow}
+
+% - `\concat`: concatenation of sequences
+
+\DeclareDocumentMacro \concat {\frown}
+
+% - `\umin{x}{!A}`: unbounded minimization
+
+\DeclareDocumentCommand \umin { m m } {\mu #1 \; #2}
+
+% - `\bmin{x < y}{!A}`: bounded minimization
+
+\DeclareDocumentCommand \bmin { m m } {(\fn{min} \; #1)\, #2}
+
+% - `\bexists{x < y}{!A}`: bounded existential quantification
+
+\DeclareDocumentCommand \bexists { m m } {(\exists #1)\; #2}
+
+% - `\bforall{x < y}{!A}`: bounded univeral quantification
+
+\DeclareDocumentCommand \bforall { m m } {(\forall #1)\; #2}
+
+% - `\cfind{e}[n]`: partial computable function with index $e$
+
+\DeclareDocumentCommand \cfind { m o } {%
+	\IfNoValueTF {#2}
+	% optional argument not present
+	{ \varphi_{#1} }
+	% optional argument present
+	{ \varphi_{#1}^{#2} }
+}
+
+% - `\redone`: one-step reduction
+
+\DeclareDocumentCommand \redone { o } {
+	\IfNoValueTF {#1}
+	{\xrightarrow{}}
+	{\xrightarrow{#1}}
+}
+
+\DeclareDocumentMacro \aconvone {\redone[\alpha]}
+
+\DeclareDocumentMacro \bredone {\redone[\beta]}
+
+\DeclareDocumentMacro \eredone {\redone[\eta]}
+
+\DeclareDocumentMacro \beredone {\redone[\beta\eta]}
+
+\DeclareDocumentMacro \xredone {\redone[X]}
+
+% - `\red`: reduction
+
+\DeclareDocumentCommand \xrightarrowdbl { o m } {
+	\IfNoValueTF {#1}
+	{\xrightarrow{#2} \mathrel{\mkern-14mu}\rightarrow}
+	{\xrightarrow[#1]{#2} \mathrel{\mkern-14mu}\rightarrow}
+}
+
+\DeclareDocumentCommand \red { o } {
+	\IfNoValueTF {#1}
+	{\xrightarrowdbl{}}
+	{\xrightarrowdbl{#1}}
+}
+
+\DeclareDocumentMacro \aconv {\red [\alpha]}
+
+\DeclareDocumentMacro \bred {\red [\beta]}
+
+\DeclareDocumentMacro \ered {\red [\eta]}
+
+\DeclareDocumentMacro \bered {\red [\beta\eta]}
+
+\DeclareDocumentMacro \xred {\red [X]}
+
+% - `\equal`: equivalence relation with some letter over the symbol
+\DeclareDocumentCommand \equal { o } {
+	\IfNoValueTF {#1}
+	{\eq}
+	{\stackrel{#1}{\eq}}
+}
+
+\DeclareDocumentMacro \aeq {\equal [\alpha]}
+
+% - `\eqs`: syntactic equivalent
+\DeclareDocumentMacro \eqs {\equiv}
+
+% - `\redpar`: parallel reduction
+
+\DeclareDocumentCommand \redpar { o } {
+	\IfNoValueTF {#1}
+	{\xLongrightarrow{}}
+	{\xLongrightarrow{#1}}
+}
+
+\DeclareDocumentMacro \bredpar {\redpar [\beta]}
+
+\DeclareDocumentMacro \beredpar {\redpar [\beta\eta]}
+
+\DeclareDocumentMacro \eqa {\equal{\alpha}}
+
+\DeclareDocumentMacro \eqe {\equal{\eta}}
+
+\DeclareDocumentMacro \ext {\ensuremath{\mathit{ext}}}
+
+% - `\cd`: complete development
+
+\DeclareDocumentCommand \cd { o m } {
+	\IfNoValueTF {#1}
+	{{ #2 }^*}
+	{{ #2 }^{* {#1} }}
+}
+
+\DeclareDocumentCommand \bcd { m } {
+	\cd[\beta]{#1}
+}
+
+\DeclareDocumentCommand \becd { m } {
+	\cd[\beta\eta]{#1}
+}
+
+% - `\lambd[x][!A]`: lambda abstract
+
+\DeclareDocumentCommand \lambd { o o } {
+	\IfNoValueTF {#1} 
+	{ \lambda }    % no arguments
+	{ \lambda #1 } % one argument
+	\IfNoValueTF {#2} 
+	\relax
+	{ .\, #2 }      % two arguments
+}
+
+% - `\num{n}` : numeral corresponding to a number
+
+\DeclareDocumentCommand \num { m } {\overline{#1}}
+
+% - `\scode{s}`: code for a symbol
+
+\DeclareDocumentCommand \scode { m } {\fn{c}_{#1}}
+
+% - `\Gn{!A}`: G\"odel number of a string of symbols
+
+\DeclareDocumentCommand \Gn { m } {{^{\reflectbox{\tiny\#}}}{#1}{^{\mbox{\tiny\#}}}}

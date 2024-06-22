@@ -6,8 +6,7 @@
 
 \begin{document}
 
-\olfileid{tur}{und}{enu}
-\olsection{Enumerating Turing Machines}
+\olsection{tur}{und}{enu}{Enumerating Turing Machines}
 
 \begin{explain}
 We can show that the set of all Turing machines is !!{enumerable}.
@@ -26,30 +25,9 @@ a state. However, the \emph{behavior} of the Turing machine is
 independent of which objects serve as states and vocabulary. Consider
 the two Turing machines in \olref{fig:variants}.
 \begin{figure}
-\begin{center}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
-                    semithick]
-  \tikzstyle{every state}=[fill=none,draw=black,text=black]
-
-  \node[initial,state]         (A)              {$q_0$};
-  \node[state]         (B) [right of=A] {$q_1$};
-
-  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
-        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
-            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
-\end{tikzpicture}\\
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
-  semithick]
-\tikzstyle{every state}=[fill=none,draw=black,text=black]
-
-\node[initial,state]         (A)              {$s$};
-\node[state]         (B) [right of=A] {$h$};
-
-\path (A) edge [bend left] node {\TMtrans{A}{A}{\TMright}} (B)
-(B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
-edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
-\end{tikzpicture}
-\end{center}
+\centering
+\olasset{\olpath/assets/tikzpictures/turing-machines/even-variant-1.tikz}\\
+\olasset{\olpath/assets/tikzpictures/turing-machines/even-variant-2.tikz}
 \caption{Variants of the \emph{Even} machine}
 \ollabel{fig:variants}
 \end{figure}
@@ -69,18 +47,8 @@ think~$2$, etc.; $\TMendtape$ is~$1$, $\TMblank$ is~$2$, etc. In this
 way, the \emph{Even} machine becomes the machine depicted in
 \olref{fig:standard-even}.
 \begin{figure}
-\[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
-  semithick]
-\tikzstyle{every state}=[fill=none,draw=black,text=black]
-
-\node[initial,state]         (A)              {$1$};
-\node[state]         (B) [right of=A] {$2$};
-
-\path (A) edge [bend left] node {\TMtrans{3}{3}{\TMright}} (B)
-(B) edge [loop above] node {\TMtrans{2}{2}{\TMright}} (B)
-edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
-\end{tikzpicture}
-\]
+\centering
+\olasset{\olpath/assets/tikzpictures/turing-machines/even-standard.tikz}
 \caption{A standard \emph{Even} machine}
 \ollabel{fig:standard-even}
 \end{figure}

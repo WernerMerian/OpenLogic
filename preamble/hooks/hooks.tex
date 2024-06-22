@@ -1,0 +1,12 @@
+% file: hooks.tex
+
+
+% Hooks
+\def\OLEndChapterHook{}
+\def\OLEndPartHook{}
+
+% If compiled standalone as a subfile, execute \OLSubfileHook at beginning
+\ifx\document\comment
+\AtBeginDocument{\OLSubfileHook}
+\fi
+\let\OLSubfileHook\relax

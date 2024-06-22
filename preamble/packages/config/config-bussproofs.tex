@@ -1,0 +1,9 @@
+% file: config-bussproofs.tex
+
+
+
+% change definition of prooftree environment to align proofs at bottom
+% to make placement of qed symbols work
+\renewenvironment{prooftree}
+	{\begin{center}\bottomAlignProof}
+	{\DisplayProof\end{center}}

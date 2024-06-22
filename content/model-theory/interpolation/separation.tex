@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{mod}{int}{sep}
-
-\olsection{Separation of \printtoken{P}{sentence}}
+\olsection{mod}{int}{sep}{Separation of \printtoken{P}{sentence}}
 
 A bit of groundwork is needed before we can proceed with the proof of
 the interpolation theorem. An interpolant for $!A$ and $!B$ is
@@ -31,16 +29,7 @@ The inclusion relations between the classes of
 models of $\Gamma$, $\Delta$ and $!C$ are represented below:
 \begin{figure}[h]
   \centering
-  \begin{tikzpicture}[node distance=2cm, auto, thick]
-    \draw [rounded corners] (0,0) -- (6,0) -- (6,3) -- (0,3) --  cycle;
-    \draw (1.5,1.5) circle (0.9cm);
-    \draw (4.5,1.5) circle (0.9cm);
-    \path node at (1.5,1.5) {\Large $\Gamma$}; 
-    \path node at (4.5,1.5) {\Large $\Delta$}; 
-    \path node at (0.4,2.6) {\Large $\formula{C}$};
-    \path node at (3.4,0.4) {\Large $\lnot \formula{C}$};
-    \draw (2.5,0) .. controls (2.5,1.5) and (3.5,1.5) .. (3.5,3);
-  \end{tikzpicture}
+  \olasset{\olpath/assets/tikzpictures/model-theory/separation.tikz}
   \caption{$!C$ separates $\Gamma$ and $\Delta$}
   \ollabel{fig:sep}
 \end{figure}

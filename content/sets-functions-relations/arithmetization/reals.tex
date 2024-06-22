@@ -6,8 +6,7 @@
 
 \begin{document}
 
-\olfileid{sfr}{arith}{real}
-\olsection{The Real Line}
+\olsection{sfr}{arith}{real}{The Real Line}
 
 The next step is to show how to construct the reals from the
 rationals. Before that, we need to understand what is
@@ -36,16 +35,7 @@ in two ways:
 \emph{First, geometrically} (following Tennenbaum).\footnote{This
 proof is reported by \cite{Conway2006}.} Consider these squares:
 \begin{center}	
-	\begin{tikzpicture}
-		\draw[thick] (0,0) rectangle (3,3);
-		\draw[thick, fill=red!50] (0,0) rectangle (2.3,2.3);
-		\draw[thick, fill=yellow!50] (0.7,0.7) rectangle (3, 3);
-		\draw[thick, fill=orange!50] (0.7,0.7) rectangle (2.3, 2.3);
-		\draw[<->] (4, 0.7)--(4, 3);
-		\node at (4.25, 1.85) (n) {$n$};
-		\draw[<->] (5, 0)--(5, 3);
-		\node at (5.25, 1.5) (m) {$m$};
-	\end{tikzpicture}
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/sqrt-2-not-rational.tikz}
 \end{center}
 Since $m^2 = 2n^2$, the region where the two squares of side $n$
 overlap has the same area as the region which neither of the two

@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{sfr}{siz}{car}
-
-\olsection{Sets of Different Sizes, and Cantor's Theorem}
+\olsection{sfr}{siz}{car}{Sets of Different Sizes, and Cantor's Theorem}
 
 \begin{explain}
 We have offered a precise statement of the idea that two sets have the
@@ -44,13 +42,13 @@ and transitive. (This is left as an exercise.) Using this notation, we
 can say that a set $A$ is !!{enumerable} iff $\cardle{A}{\Nat}$, and
 that $A$ is !!{nonenumerable} iff $\cardless{\Nat}{A}$. This allows us
 to restate
-\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
+\oliflabeldef[sfr][siz][nen-alt]{thm:nonenum-pownat}{%
 \olref[sfr][siz][nen-alt]{thm:nonenum-pownat}
 as the observation that
 $\cardless{\Nat}{\Pow{\Nat}}$}{%
 \olref[sfr][siz][nen]{thm:nonenum-pownat}
 as the observation that $\cardless{\PosInt}{\Pow{\PosInt}}$}. In fact,
-\citet{Cantor1892} proved that this last point is \emph{perfectly
+\cite{Cantor1892} proved that this last point is \emph{perfectly
 general}:
 
 \begin{thm}[Cantor]\ollabel{thm:cantor}
@@ -67,7 +65,7 @@ We present the slow proof if \olref[nen]{sec} is
 present, otherwise a faster proof matching \olref[nen-alt]{sec}.
 \end{editorial}
 
-\oliflabeldef{sfr:siz:nen:sec}{% 
+\oliflabeldef[sfr][siz][nen]{sec}{% 
   We will now show that there cannot be !!a{surjective} function~$g\colon A \to
   \Pow{A}$, let alone !!a{bijective} one, and hence that
   $\cardneq{A}{\Pow{A}}$. For suppose that $g\colon A \to \Pow{A}$.
@@ -105,7 +103,7 @@ present, otherwise a faster proof matching \olref[nen-alt]{sec}.
 \end{proof}
 
 \begin{explain}
-\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{It's instructive to
+\oliflabeldef[sfr][siz][nen]{thm:nonenum-pownat}{It's instructive to
   compare the proof of \olref{thm:cantor} to that of
   \olref[nen]{thm:nonenum-pownat}. There we showed that for any list
   $Z_1$, $Z_2$, \dots, of subsets of~$\PosInt$ one can construct a
@@ -123,7 +121,7 @@ present, otherwise a faster proof matching \olref[nen-alt]{sec}.
   list $Z_1$, $Z_2$, \dots, $\overline{B}$ cannot be in the range
   of~$g$.}{}
 
-\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{It's instructive to
+\oliflabeldef[sfr][siz][nen-alt]{thm:nonenum-pownat}{It's instructive to
   compare the proof of \olref{thm:cantor} to that of
   \olref[nen-alt]{thm:nonenum-pownat}. There we showed that for any
   list $N_0$, $N_1$, $N_2$, \dots, of subsets of~$\Nat$ we can construct a

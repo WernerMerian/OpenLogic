@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{nml}{frd}{es5}
-
-\olsection{Equivalence Relations and \Log{S5}}
+\olsection{nml}{frd}{es5}{Equivalence Relations and \Log{S5}}
 
 The modal logic \Log{S5} is characterized as the set of !!{formula}s
 valid on all universal frames, i.e., every world is accessible from
@@ -117,24 +115,7 @@ on all equivalence relations.
 
 \begin{figure}[t]
   \centering
-  \begin{tikzpicture}[node distance=2cm, auto, thick]
-    \clip [rounded corners] (0,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
-    \begin{scope}
-      \clip (0,0) -- (2,0)  .. controls (1.5,1.5) and (4.5,1.5)
-      .. (4,4) -- (0,4) -- (0,0) -- cycle;
-      \filldraw[fill=gray!40] (0,4) -- (0,2) .. controls (1.5,1.5)
-      and (4.5,1.5) .. (4.5,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
-    \end{scope}
-    \draw [name path=line1] (2,0) .. controls (1.5,1.5) and (4.5,1.5) .. (4,4);
-    \draw [name path=line2] (0,2)  .. controls (1.5,1.5) and (4.5,1.5) .. (4.5,0);
-    \path [name intersections={of=line1 and line2}];
-    \draw [rounded corners, use as bounding box, very thick] (0,0)
-    -- (6,0) -- (6,4) -- (0,4) --  cycle; 
-    \node at (2,3) {$[w]$} ;
-    \node at (1,1) {$[u]$} ;
-    \node at (3,0.75) {$[v]$} ;
-    \node at (4.75,2) {$[z]$} ;
-  \end{tikzpicture}
+  \olasset{\olpath/assets/tikzpictures/normal-modal-logic/partition.tikz}
   \caption{A partition of $W$ in equivalence classes.}
   \ollabel{fig:partition}
 \end{figure}

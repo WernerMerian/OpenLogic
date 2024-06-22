@@ -6,8 +6,7 @@
 
 \begin{document}
 
-\olfileid{tur}{mac}{dis}
-\olsection{Disciplined Machines}
+\olsection{tur}{mac}{dis}{Disciplined Machines}
 
 \begin{explain}
 In section \olref[hal]{sec}, we considered Turing machines that have a
@@ -50,28 +49,12 @@ about how the other conditions can be dealt with.
 \end{explain}
 
 \begin{ex}
-    In \olref{fig:adder-disc}, we turn the addition machine
-    from \olref[una]{ex:adder} into a disciplined machine.
-    \begin{figure}\[
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
-                    semithick]
-  \tikzstyle{every state}=[fill=none,draw=black,text=black]
-
-  \node[initial,state]         (A)              {$q_0$};
-  \node[state]         (B) [right of=A] {$q_1$};
-  \node[state]         (C) [below right of=B] {$q_2$};
-  \node[state]         (D) [below left of=C] {$q_3$};
-  \node[state]         (H) [left of=D] {$h$};
-
-  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
-           edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
-        (B) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
-            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
-        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
-        (D) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
-        edge node {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (H);
-\end{tikzpicture}
-\]\caption{A disciplined addition machine}
+In \olref{fig:adder-disc}, we turn the addition machine
+from \olref[una]{ex:adder} into a disciplined machine.
+\begin{figure}
+\centering
+\olasset{\olpath/assets/tikzpictures/turing-machines/adder-disc.tikz}
+\caption{A disciplined addition machine}
 \ollabel{fig:adder-disc}
 \end{figure}
 \end{ex}

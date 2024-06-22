@@ -1,0 +1,252 @@
+% Tokens
+% ======
+
+% The following terms are *tokenized* throughout OLP. This means that
+% by changing the definition in the configuration file, the term as
+% printed will also change. This is simpler than searching and
+% replacing these terms in all OLP texts, and it will also treat
+% plurals as well as occurrences of the term at the beginning of a
+% sentence (where it should be capitalized) correctly.
+
+% Tokens are defined using the `\settexttoken` command.
+% ```
+% \settexttoken{token}{singular}{plural}[Singular][Plural]
+% ```
+% Here `token` is the term as it is used in the source text, where it
+% typically is used as `!!{token}`.  `singular` and `plural` are the
+% text you want printed wherever an OLP text contains `!!{token}` or
+% `!!{token}s`.  In sentence-initial position, OLP texts would use
+% `!!^{token}` and `!!^{token}s` to create capitalized versions of
+% these token replacements.  By default, they are generated from
+% `singluar` and `plural` by capitalizing the first character, but can
+% be provided explicitly to `\settexttoken` as optional arguments.
+% `!!a{token}` produces an indefinite article plus the token
+% replacement. This is usually "a" unless the settexttoken command is
+% used with a star, as in `\settexttoken{element}*{element}{elements}`,
+% in which case it produces "an". This can be combined with `^` to
+% produce the uppercase version, e.g., `!!^a{element}` for "An
+% element".  `\article{token}` and `\Article{token}` produce just the
+% article by itself (lower or uppercase, respectively).
+
+% - `language`: defaults to "language", redefine for, e.g.,
+% "signature"
+
+\settexttoken{language}{language}{languages}
+
+% - `formula`: defaults to "formula/formulas", redefine for
+% plural "formulae," or for "wff".
+
+\settexttoken{formula}{formula}{formulas}
+
+% - `subformula`: defaults to "subformula", redefine for plural
+% "subformulae," hyphenated spelling "sub-formula", or "sub-wff".
+
+\settexttoken{subformula}{subformula}{subformulas}
+
+% - `sentence`: defaults to "sentence", redefine for
+% "closed formula" etc.
+
+\settexttoken{sentence}{sentence}{sentences}
+
+% - `variable`: defaults to "variable/variables", redefine to be more
+% specific, e.g., "individual variable", "object veriable".
+
+\settexttoken{variable}{variable}{variables}
+
+% - `propositional variable`: defaults to "propositional
+% variable/variables", redefine for, e.g., "sentence
+% letter"
+
+\settexttoken{propositional variable}{propositional variable}{propositional variables}
+
+% - `constant`: defaults to "constant", redefine for "individual
+% constant", "constant symbol."
+
+\settexttoken{constant}{constant symbol}{constant symbols}
+
+% - `predicate`: defaults to "predicate symbol".
+
+\settexttoken{predicate}{predicate symbol}{predicate symbols}
+
+% - `function`: defaults to "function symbol".
+
+\settexttoken{function}{function symbol}{function symbols}
+
+% - `operator`: defaults to "logical operator", redefine for "connective".
+
+\settexttoken{operator}{logical operator}{logical operators}
+
+% - `main operator`: defaults to "main operator", redefine for
+% "outermost operator".
+
+\settexttoken{main operator}{main operator}{main operators}
+
+% - `free for`: defaults to "free for", redefine for
+% "substitutable for" as in Enderton.
+
+\settexttoken{free for}{free for}{free for}
+
+% - `identity`: defaults to "identity predicate", redefine for
+% "equality predicate."
+
+\settexttoken{identity}*{identity predicate}{identity predicates}
+
+% - `conditional`: defaults to "conditional", redefine for
+% "implication."
+
+\settexttoken{conditional}{conditional}{conditionals}
+
+% - `biconditional`: defaults to "biconditional", redefine for
+% "equivalence."
+
+\settexttoken{biconditional}{biconditional}{biconditionals}
+
+% - `falsity`: name of the falsity symbol, defaults to "falsity",
+% redefine for "absurdity."
+
+\settexttoken{falsity}{falsity}{falsities}
+
+% - `truth`: name of the truth symbol, defaults to "truth", redefine
+% for "verum" or "top".
+
+\settexttoken{truth}{truth}{truth}
+
+% - `structure`: term for first-order structures, defaults to
+% "structure", redefine for "interpretation", "model".
+
+\settexttoken{structure}{structure}{structures}
+
+% - `valuation`: valuation, truth-value assignment
+
+\settexttoken{valuation}{valuation}{valuations}
+
+% - `domain`: domain of a structure
+
+\settexttoken{domain}{domain}{domains}
+
+% - `value`: value (denotation) of a term
+
+\settexttoken{value}{value}{values}
+
+% - `relational model`: term for modal structures, defaults to
+% "relational model", redefine for "Kripke model".
+
+\settexttoken{relational model}{relational model}{relational models}
+
+% - `derivation`: derivation in a calculus, proof
+
+\settexttoken{derivation}{derivation}{derivations}
+
+% - `derive`: derive in a calculus, prove
+
+\settexttoken{derive}{derive}{derives}
+
+% - `derivable`: derivable in a calculus, provable
+
+\settexttoken{derivable}{derivable}{derivable}
+
+% - `derivability`: derivability in a calculus, provability
+
+\settexttoken{derivability}{derivability}{derivabilities}
+
+% - `nonderivability`: derivability in a calculus, unprovability
+
+\settexttoken{nonderivability}{non-derivability}{non-derivabilities}
+
+% - `tableau`: tableau, tableaux; or truth tree
+
+\settexttoken{tableau}{tableau}{tableaux}
+
+% - `signed formula`: signed formula in a tableau
+
+\settexttoken{signed formula}{signed formula}{signed formulas}
+
+% - `complete`: negation complete, syntactically complete (of theories)
+
+\settexttoken{complete}{complete}{complete}
+
+% - `axiomatizable`: effectively/recursively axiomatizable
+
+\settexttoken{axiomatizable}*{axiomatizable}{axiomatizable}
+\settexttoken{axiomatized}*{axiomatized}{axiomatized}
+\settexttoken{axiomatizability}*{axiomatizability}{axiomatizability}
+
+% - `represents`, `representable`
+
+\settexttoken{represents}{represents}{represent}
+\settexttoken{representable}{representable}{representable}
+
+% - `discharge`: discharge an assumption in a natural deduction proof,
+% cancel, close. Also: undischarged, non-cancelled, open.
+
+\settexttoken{discharge}{discharge}{discharges}
+\settexttoken{discharged}{discharged}{discharged}
+\settexttoken{undischarged}*{undischarged}{undischarged}
+
+% - `complete`: syntactic completeness of a set of sentences
+
+\settexttoken{complete}{complete}{complete}
+
+% - `enumerable`: term for finite or countably infinite; defaults to
+% "enumerable", redefine for "countable".
+
+\settexttoken{enumerable}*{enumerable}{enumerable}
+
+% - `nonenumerable`: term for uncountable; defaults to
+% "non-enumerable", redefine for "uncountable".
+
+\settexttoken{nonenumerable}{non-enumerable}{non-enumerable}
+
+% - `denumerable`: term for countably infinite; defaults to
+% "denumerable".
+
+\settexttoken{denumerable}{denumerable}{denumerable}
+
+% - `element`: element of a set; redefine for "member"
+
+\settexttoken{element}*{element}{elements}
+
+% - `injective`, `injection`: redefine for "one-one" and "one-one
+% function"
+
+\settexttoken{injective}*{injective}{injective}
+\settexttoken{injection}*{injection}{injections}
+
+% - `surjective`, `surjection`: redefine for "onto" and "onto function"
+
+\settexttoken{surjective}{surjective}{surjective}
+\settexttoken{surjection}{surjection}{surjections}
+
+% - `bijective`, `bijection`: redefine for "one-one onto" and "one-one
+% onto function" or "correspondence"
+
+\settexttoken{bijective}{bijective}{bijective}
+\settexttoken{bijection}{bijection}{bijections}
+
+% - `decidable`:
+
+\settexttoken{decidable}{decidable}{decidable}
+
+\settexttoken{computably enumerable}{computably enumerable}{computably enumerable}
+\settexttoken{c.e.}{c.e.}{c.e.}
+
+\settexttoken{argument}*{argument}{arguments}
+\settexttoken{parameter}{parameter}{parameters}
+
+
+% - `lambda define`: Also: represent.
+
+\settexttoken{lambda define}{$\lambd$-define}{$\lambd$-defines}[$\lambd$-Define][$\lambd$-Defines]
+\settexttoken{lambda defined}{$\lambd$-defined}{$\lambd$-defined}[$\lambd$-Defined]
+\settexttoken{lambda definable}{$\lambd$-definable}{$\lambd$-definable}[$\lambd$-Definable]
+
+
+
+
+
+% Colors
+% ======
+
+\settexttoken{colorC}{red}{red}
+\settexttoken{colorD}{blue}{blue}
+\settexttoken{colorE}{green}{green}

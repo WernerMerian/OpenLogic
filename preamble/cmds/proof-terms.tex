@@ -1,0 +1,12 @@
+% Proof Terms
+% ---------------------
+%
+% Proof terms used in intuitionistic logic
+
+\DeclareDocumentCommand \typeof { m m } {#1^{#2}}
+
+\DeclareDocumentCommand \andi { m m } {\tuple{#1, #2}}
+\DeclareDocumentCommand \ande { m m } {\fn{p}_{#1}(#2)}
+\DeclareDocumentCommand \ori { m m m } {\fn{in}_{#1}^{#2}(#3)}
+\DeclareDocumentCommand \ore { m m m m m } {\fn{case}(#1, #2.#3, #4.#5)}
+\DeclareDocumentCommand \falsee { m m } {\fn{contr}_{#1}(#2)}

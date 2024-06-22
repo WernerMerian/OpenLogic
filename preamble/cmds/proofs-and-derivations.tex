@@ -1,0 +1,71 @@
+% Proofs and Derivations
+% ----------------------
+
+% - The sequent symbol `\Sequent` produces $\Rightarrow$ by
+% default. Change the definition for $\vdash$, or another symbol.
+
+\DeclareDocumentMacro \Sequent {\Rightarrow}
+
+\DeclareDocumentMacro \nSequent {\mid}
+
+% The sequent symbol in proofs displays as the above sequent symbol.
+
+\DeclareDocumentMacro \fCenter {\ensuremath{\,\Sequent\,}}
+
+% - Rule names: `\LeftR{Op}` typesets the name of a left rule for
+% operator `Op`, e.g., `\LeftR{\land}` produces `$\land$L`.
+% `\RightR{Op}` does the same for right rules.
+
+\DeclareDocumentCommand \LeftR { m } {\ensuremath{{#1}\mathrm{L}}}
+
+\DeclareDocumentCommand \RightR { m } {\ensuremath{{#1}\mathrm{R}}}
+
+\DeclareDocumentCommand \iR { m m o} {\ensuremath{{#1\IfNoValueTF{#3}{}{_{#3}}}{#2}}}
+
+% - `\Weakening`: produces name or abbreviation for weakening rule,
+% e.g., ``W''.
+
+\DeclareDocumentMacro \Weakening {\text{W}}
+
+% - `\Contraction`: produces name or abbreviation for contraction rule,
+% e.g., ``C''.
+
+\DeclareDocumentMacro \Contraction {\text{C}}
+
+% - `\Exchange`: produces name or abbreviation for exchange rule,
+% e.g., ``X''.
+
+\DeclareDocumentMacro \Exchange {\text{X}}
+
+% - `\Cut`: produces name or abbreviation for cut rule,
+% e.g., ``Cut''.
+
+\DeclareDocumentMacro \Cut {\text{Cut}}
+
+% - Rule names: `\Intro{Op}` typesets the name of an intro rule for
+% operator `Op`, e.g., `\Intro{\land}` produces `$\land$Intro`.
+% `\Elim{Op}` does the same for elimination rules.
+
+\DeclareDocumentCommand \Intro { m } {\ensuremath{{#1}\mathrm{Intro}}}
+
+\DeclareDocumentCommand \Elim { m } {\ensuremath{{#1}\mathrm{Elim}}}
+
+% - `\FalseInt`, `\FalseCl`: produces name or abbreviation for
+% intuitionistic and classical absurdity rule, e.g., ``$\bot_I$,''
+% ``$\bot_C$''.
+
+\DeclareDocumentMacro \FalseInt {\ensuremath{\lfalse_I}}
+\DeclareDocumentMacro \FalseCl {\ensuremath{\lfalse_C}}
+
+% - `\Discharge{!A}{n}`: typesets a discharged assumption with label
+% $n$, e.g., $[!A]^n$.
+
+\DeclareDocumentCommand \Discharge { m m }{[#1]^{#2}}
+
+% - `\DischargeRule{Rule}{n}`: used in a `prooftree` environment to
+% provide the labels for an inference that discharges an assumption.
+
+\DeclareDocumentCommand \DischargeRule { m m }{
+	\RightLabel{#1}
+	\LeftLabel{\scriptsize $#2$}
+}

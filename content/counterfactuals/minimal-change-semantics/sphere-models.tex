@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{con}{min}{sph}
-
-\olsection{Sphere Models}
+\olsection{con}{min}{sph}{Sphere Models}
 
 One way of providing a formal semantics for counterfactuals is to turn
 Lewis's informal account into a mathematical structure. The spheres
@@ -43,23 +41,10 @@ spheres as containing all the worlds within their outer surface; they
 are not just the individual layers.
 
 \begin{figure}
-\begin{center}
-\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
-  \spheresystem{3}
-  \propositionintersect{0}{3}{60}{6}
-  \path (0,0) node[world] {$w$};
-  \spherepos{-30}{2}{node[world] {$w_2$}}
-  \spherepos{220}{2}{node[world] {$w_3$}}
-  \spherepos{90}{2}{node[world] {$w_1$}}
-  \spherepos[shift={(.1,0)}]{10}{3}{node[world] {$w_5$}}
-  \spherepos[shift={(.1,0)}]{-10}{3}{node[world] {$w_6$}}
-  \spherepos{225}{3}{node[world] {$w_4$}}
-  \spherepos{20}{4}{node[world] {$w_7$}}
-  \path (5,0) node[left] {$p$};
-\end{tikzpicture}
+\centering
+\olasset{\olpath/assets/tikzpictures/counterfactuals/sphere-model.tikz}
 \caption{Diagram of a sphere model}
 \ollabel{fig:sphere-model}
-\end{center}
 \end{figure}
 
 The diagram in \olref{fig:sphere-model} corresponds to the sphere

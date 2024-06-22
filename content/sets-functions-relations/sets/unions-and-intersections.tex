@@ -6,8 +6,7 @@
 
 \begin{document}
 
-\olfileid{sfr}{set}{uni}
-\olsection{Unions and Intersections}
+\olsection{sfr}{set}{uni}{Unions and Intersections}
 
 \begin{explain}
 In \olref[sfr][set][bas]{sec}, we introduced definitions of sets by
@@ -21,7 +20,8 @@ this as in \olref{fig:union}, where the highlighted area indicates the
 !!{element}s of the two sets $A$ and~$B$ together.
 
 \begin{figure}
-  \olasset{assets/diagrams/union.tikz}
+  \centering
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/union.tikz}
   \caption{The union $A \cup B$ of two sets is set of !!{element}s of
    $A$ together with those of~$B$.}
   \ollabel{fig:union} 
@@ -61,7 +61,8 @@ operation that forms the set of all !!{element}s that are !!{element}s
 of~$A$ and are also !!{element}s of~$B$. This operation is called 
 \emph{intersection}, and can be depicted as in \olref{fig:intersection}.
 \begin{figure}
-  \olasset{assets/diagrams/intersection.tikz}
+  \centering
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/intersection.tikz}
   \caption{The intersection $A \cap B$ of two sets is the set of
     !!{element}s they have in common.}
   \ollabel{fig:intersection}
@@ -153,7 +154,8 @@ Finally, we may want to think about the set of all !!{element}s in~$A$
 which are not in~$B$. We can depict this as in \olref{difference}.
 
 \begin{figure}
-  \olasset{assets/diagrams/difference.tikz}
+  \centering
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/difference.tikz}
   \caption{The difference $A \setminus B$ of two sets is the set of
     those !!{element}s of~$A$ which are not also !!{element}s of~$B$.}
   \ollabel{difference}
@@ -170,5 +172,15 @@ A\setminus B = \Setabs{x}{x\in A \text{ and } x \notin B}.
 \begin{prob}
 	Prove that if $A \subsetneq B$, then $B \setminus A \neq \emptyset$.
 \end{prob}
+
+\todo[inline]{Symmetric difference is missing}
+
+\begin{figure}
+	\centering
+	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/symmetric-difference.tikz}
+	\caption{The symmetric difference $A \symmdiff B$ of two sets is the set of
+		those !!{element}s of~$A$ which are not also !!{element}s of~$B$ together with those of~$B$ which are not also !!{element}s of~$A$.}
+	\ollabel{symmetric-difference}
+\end{figure}
 
 \end{document}

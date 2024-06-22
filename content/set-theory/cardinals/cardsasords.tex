@@ -2,8 +2,7 @@
 
 \begin{document}
 
-\olfileid{sth}{cardinals}{cardsasords}
-\olsection{Cardinals as Ordinals}
+\olsection{sth}{cardinals}{cardsasords}{Cardinals as Ordinals}
 
 In fact, our theory of cardinals will just make (shameless) use of our
 theory of ordinals. That is: we will just define cardinals as certain
@@ -88,16 +87,7 @@ We will prove the left-to-right direction of the second claim (the
 other cases are similar, and left as an exercise). So, consider the
 following diagram:
 \begin{center}
-	\begin{tikzpicture}
-	\node (nodea) {$A$};
-	\node[right = 6em of nodea] (nodeb) {$B$};
-	\node[below = 2em of nodea] (nodecarda) {$\card{A}$};
-	\node[below = 2em of nodeb] (nodecardb) {$\card{B}$};
-	\draw[->] (nodea)--(nodeb);
-	\draw[<->] (nodea)--(nodecarda);
-	\draw[<->] (nodeb)--(nodecardb);
-	\draw[->, dashed] (nodecarda)--(nodecardb);
-\end{tikzpicture}
+  \olasset{\olpath/assets/tikzpictures/sets-theory/cardinals-as-ordinals.tikz}
 \end{center}
 The double-headed arrows indicate !!{bijection}s, whose existence is
 guaranteed by \olref{lem:CardinalsExist}. In assuming that

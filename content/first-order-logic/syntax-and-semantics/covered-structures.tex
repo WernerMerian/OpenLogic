@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{fol}{syn}{cov}
-
-\olsection{Covered \printtoken{P}{structure} for First-order Languages}
+\olsection{fol}{syn}{cov}{Covered \printtoken{P}{structure} for First-order Languages}
 
 \begin{explain}
 Recall that a term is \emph{closed} if it contains no !!{variable}s.
@@ -20,7 +18,7 @@ If $t$ is a closed term of the language~$\Lang L$ and $\Struct M$ is a
 defined as follows:
 \begin{enumerate}
 \item If $t$ is just the !!{constant}~$c$, then $\Value{c}{M} = \Assign{c}{M}$.
-\item If $t$ is of the form $\Atom{f}{t_1, \ldots, t_n}$, then
+\item If $t$ is of the form $\Term{f}{t_1, \ldots, t_n}$, then
   \[
   \Value{t}{M} = \Assign{f}{M}(\Value{t_1}{M}, \ldots,
   \Value{t_n}{M}).

@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{nml}{fil}{exf}
-
-\olsection{Examples of Filtrations}
+\olsection{nml}{fil}{exf}{Examples of Filtrations}
 
 We have not yet shown that there are any filtrations. But indeed, for
 any model $\mModel{M}$, there are many filtrations of $\mModel{M}$
@@ -107,30 +105,9 @@ have as many as possible.
 
   \begin{figure}
     \centering
-    \begin{tikzpicture}[modal]
-      \node[world] (1) [label=below:\mFalse{p}] {$1$};
-      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$2$};
-      \node[world] (3) [label=below:\mFalse{p}, right=of 2] {$3$};
-      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$4$};
-      \node[phantom] (5) [right=of 4] {};
-      \draw[->] (1) to (2);
-      \draw[->] (2) to (3);
-      \draw[->] (3) to (4);
-      \draw[dotted] (4) to (5);
-    \end{tikzpicture}
-
-    \begin{tikzpicture}[modal]
-      \node[world] (1) [label=below:\mFalse{p}] {$[1]$};
-      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$[2]$};
-      \draw[->,bend left] (1) to (2);
-      \draw[->,bend left] (2) to (1);
-      
-      \node[world] (3) [label=below:\mFalse{p},right=of 2] {$[1]$};
-      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$[2]$};
-      \draw[->,bend left] (3) to (4);
-      \draw[->,bend left] (4) to (3);
-      \draw[->,reflexive above] (4) to (4);
-    \end{tikzpicture}
+    \olasset{\olpath/assets/tikzpictures/normal-modal-logic/ex-filtration-1.tikz}
+	
+	\olasset{\olpath/assets/tikzpictures/normal-modal-logic/ex-filtration-2.tikz}
     \caption{An infinite model and its filtrations.}
     \ollabel{fig:ex-filtration}
   \end{figure}
@@ -174,47 +151,7 @@ have as many as possible.
     0}{\sigma \in \Bin^*}$ and $V(q) = \Setabs{\sigma 1}{\sigma \in
     \Bin^* \setminus \{1\}}$. Here's a picture:
   \begin{center}
-    \begin{tikzpicture}[modal,
-        node distance=2cm
-      ]
-
-      \node[world] (0) [label={below:\mTrue{p}\\\mFalse{q}},font=\tiny] {$0$};
-      \node[world] (00) [label={below:\mTrue{p}\\\mFalse{q}},
-        above right=of 0,font=\tiny] {$00$};
-      \node[world] (000) [label={below:\mTrue{p}\\\mFalse{q}},
-        right=of 00, yshift=.8cm, font=\tiny] {$000$};
-      \node[phantom] (0000) [right=of 000, yshift=.5cm] {};
-      \node[phantom] (0001) [right=of 000, yshift=-.5cm] {};
-      \node[world] (001) [label={below:\mFalse{p}\\\mTrue{q}},
-        right=of 00, yshift=-.8cm, font=\tiny] {$001$};
-      \node[phantom](0010) [right=of 001, yshift=.5cm] {};
-      \node[phantom](0011) [right=of 001, yshift=-.5cm] {};
-      \node[world] (01) [label={below:\mFalse{p}\\\mTrue{q}},
-        below right=of 0,font=\tiny] {$01$};
-      \node[world] (010) [label={below:\mTrue{p}\\\mFalse{q}},
-        right=of 01, yshift=.8cm,font=\tiny] {$010$};
-      \node[phantom] (0100) [right=of 010, yshift=.5cm] {};
-      \node[phantom] (0101) [right=of 010, yshift=-.5cm] {};
-      \node[world] (011) [label={below:\mFalse{p}\\\mTrue{q}},
-        right=of 01, yshift=-.8cm,font=\tiny] {$011$};
-      \node[phantom] (0110) [right=of 011, yshift=.5cm] {};
-      \node[phantom] (0111) [right=of 011, yshift=-.5cm] {};
-
-      \draw[->] (0) to (00);
-      \draw[->] (0) to (01);
-      \draw[->] (00) to (000);
-      \draw[dotted] (000) to (0000);
-      \draw[dotted] (000) to (0001);
-      \draw[->] (00) to (001);
-      \draw[dotted] (001) to (0010);
-      \draw[dotted] (001) to (0011);
-      \draw[->] (01) to (010);
-      \draw[dotted] (010) to (0100);
-      \draw[dotted] (010) to (0101);
-      \draw[->] (01) to (011);
-      \draw[dotted] (011) to (0110);
-      \draw[dotted] (011) to (0111);
-    \end{tikzpicture}
+  	\olasset{\olpath/assets/tikzpictures/normal-modal-logic/prob-filtration-binary-string.tikz}
   \end{center}
   We have $\mSat/{M}{\Box(p \lor q) \lif (\Box p \lor \Box q)}[w]$ for
   every~$w$.

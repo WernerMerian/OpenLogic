@@ -6,8 +6,7 @@
 
 \begin{document}
 
-\olfileid{sfr}{infinite}{hilbert}
-\olsection{Hilbert's Hotel}
+\olsection{sfr}{infinite}{hilbert}{Hilbert's Hotel}
 
 The set of the natural numbers is obviously infinite. So, if we do not
 want to \emph{help ourselves} to the natural numbers, our first step
@@ -28,34 +27,16 @@ exactly one guest. As soon as a new guest comes along, the owner only
 needs to move each of the old guests into the room associated with the
 number one higher, and room~$1$ will be free for the newly-arriving
 guest. 
-	\begin{center}
-		\begin{tikzpicture}[scale = .75]
-		\foreach \x in {1, 2, 3, 4, 5, 6, 7, 8, 9}
-		{
-			\node (\x a) at (\x, 1) {\small{\x}};
-			\node (\x b) at (\x, 2) {\small{\x}};
-		}
-		\node (dotsa) at (10, 1) {\small{\ldots}};
-		\node (dotsb) at (10, 2) {\small{\ldots}};
-		\draw[->] (1b)--(2a);
-		\draw[->] (2b)--(3a);
-		\draw[->] (3b)--(4a);
-		\draw[->] (4b)--(5a);
-		\draw[->] (5b)--(6a);
-		\draw[->] (6b)--(7a);
-		\draw[->] (7b)--(8a);
-		\draw[->] (8b)--(9a);
-		\draw[->] (9b)--(dotsa);
-		\draw (1,1) circle (.4);
-		\end{tikzpicture}
-	\end{center}
-	(published in \citealt[730]{EwaldSieg2013}; our translation)
+\begin{center}
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/hilberts-hotel.tikz}
+\end{center}
+(published in \cite[730]{EwaldSieg2013}; our translation)
 \end{quote}
 The crucial point is that Hilbert's Hotel has infinitely many rooms;
 and we can take his explanation to define what it means to say this.
 Indeed, this was Dedekind's approach (presented here, of course, with
 massive anachronism; Dedekind's definition is from
-\citeyear{Dedekind1888}):
+\cite{Dedekind1888}):
 
 \begin{defn}\ollabel{defn:DedekindInfinite}
 A set $A$ is \emph{Dedekind infinite} iff there is !!a{injection}

@@ -2,9 +2,7 @@
 
 \begin{document}
 
-\olfileid{his}{set}{hilbertcurve}
-
-\olsection{Appendix: Hilbert's Space-filling Curves}
+\olsection{his}{set}{hilbertcurve}{Appendix: Hilbert's Space-filling Curves}
 
 In chapter \olref[pathology]{sec}, we mentioned that Cantor's proof that
 a line and a square have exactly the same number of points
@@ -21,64 +19,17 @@ We must define a function, $h$, as the limit of a sequence of functions $h_1$, $
 
 We will take $h$'s range to be the unit square, $\unitsquare$. Here is our first approximation to $h$, i.e., $h_1$:
 \begin{center}
-	\begin{tikzpicture}
-	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
-	\draw[step = 40pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
-	\draw[oldiagcolorC, thick] (20pt, 0)--(20pt, 20pt);
-	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);		
-	\begin{scope}[xshift=20pt, yshift=20pt]
-	\draw [black, thick, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}]  lindenmayer system;
-	\end{scope}
-	\end{tikzpicture}
+	\olasset{\olpath/assets/tikzpictures/history/hilbertcurve-1.tikz}
 \end{center}
 To keep track of things, we have imposed a $2 \times 2$ grid on the square. We can think of the curve starting in the bottom left quarter, moving to the top left, then to the top right, then finally to the bottom right. Here is the second stage in the construction, i.e., $h_2$:
 \begin{center}
-	\begin{tikzpicture}
-	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
-	\draw[step = 20pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
-	\draw[oldiagcolorC, thick] (0pt, 10pt)--(10pt, 10pt);
-	\draw[oldiagcolorC, thick] (70pt, 10pt)--(80pt, 10pt);
-	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt); 
-	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt); 
-	\draw[thick, oldiagcolorE] (70pt, 50pt)--(70pt, 30pt); \begin{scope}[xshift=10pt, yshift=30pt]
-	\draw [thick, rotate=270,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=10pt, yshift=50pt]
-	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=50pt, yshift=50pt]
-	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=70pt, yshift=10pt]
-	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
-	\end{scope}
-	\end{tikzpicture}
+	\olasset{\olpath/assets/tikzpictures/history/hilbertcurve-2.tikz}
 \end{center}
 The different colours will help explain how $h_2$ was constructed. We first place scaled-down copies of the non-!!{colorC} bit of $h_1$ into the bottom left, top left, top right, and bottom right of our square (drawn in black). We then connect these four figures (with !!{colorE} lines). Finally, we connect our figure to the boundary of the square (with !!{colorC} lines).
 
 Now to $h_3$. Just as $h_2$ was made from four connected, scaled-down copies of the non-red bit of $h_1$, so $h_3$ is made up of four scaled-down copies of the non-red bit of $h_2$ (drawn in black), which are then joined together (with !!{colorE} lines) and finally connected to the boundary of the square (with !!{colorC} lines).
 \begin{center}
-	\begin{tikzpicture}
-	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
-	\draw[step = 10pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
-	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt); 
-	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt); 
-	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt);
-	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt); 
-	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt); 
-	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt); \begin{scope}[xshift=5pt, yshift=35pt]
-	\draw [rotate=270, thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=5pt, yshift=45pt]
-	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=45pt, yshift=45pt]
-	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
-	\end{scope}
-	\begin{scope}[xshift=75pt, yshift=5pt]
-	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
-	\end{scope}
-	\end{tikzpicture}
+	\olasset{\olpath/assets/tikzpictures/history/hilbertcurve-3.tikz}
 \end{center}
 And now we see the general pattern for defining $h_{n+1}$ from $h_n$.
 At last we define the curve $h$ \emph{itself} by considering the

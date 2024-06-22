@@ -1,0 +1,83 @@
+% Modal logic
+% ===========
+
+% - `\mModel{M}` - modal structures; default: set first token in
+% Fraktur
+
+\DeclareDocumentCommand \mModel { m }{\applytofirst{\mathfrak}{#1}}
+
+% `\mSat[/]{M}{!A}[w]`, the relation of being satisfied in a
+% model (at a world), is provided as the command
+% `\mSat` with two mandatory arguments (the model and the formula)
+% and one optional argument (the world).  Use `\mSat/` to create
+% the negated relation.  By default, `\mSat{M}{!A}[w]` is typeset as
+% $\mathfrak{M}, w \models \varphi$.
+
+\DeclareDocumentCommand \mSat { t{/} m m o } {%
+	\IfBooleanTF{#1}{%
+		% negated
+		\IfNoValueTF {#4} 
+		{ \mModel{#2} \nVdash #3 }
+		{ \mModel{#2}, #4 \nVdash #3}}{%
+		% not negated
+		\IfNoValueTF {#4} 
+		{ \mModel{#2} \Vdash #3 }
+		{ \mModel{#2}, #4 \Vdash #3 }}}
+
+% - `\mClass{C}` --- typeset class of models
+
+\DeclareDocumentCommand \mClass { m }{\mathcal{#1}}
+
+% - `\Nec`: produces abbreviation for Necessitation.
+
+\DeclareDocumentMacro \Nec {\textsc{nec}}
+
+% - `\RK`: produces abbreviation for Rule K
+
+\DeclareDocumentMacro \RK {\textsc{rk}}
+
+% - `\Dual`: produces abbreviation for Dual
+
+\DeclareDocumentMacro \Dual {\textsc{dual}}
+
+% - `\Taut`: produces abbreviation for Dual
+
+\DeclareDocumentMacro \Taut {\textsc{taut}}
+
+% - `\PL`: produces abbreviation for ``Propositional Logic''
+
+\DeclareDocumentMacro \PL {\textsc{pl}}
+
+% - `\Prop{M}{A}`: the proposition defined by $A$ in $\mathfrak{M}$
+
+\DeclareDocumentCommand \Prop { m m } {
+	{[\!\![} #2 {]\!\!]_{\mModel{#1}}}
+}
+
+% - `\ST`: The standard translation
+
+\DeclareDocumentMacro \ST {\mathord{\mathrm{ST}}}
+
+% - TikZ style for modal models
+
+\tikzset{
+	modal/.style={>=stealth',
+		shorten >=1pt,
+		shorten <=1pt,
+		auto,
+		node distance=1.5cm,
+		label distance=2pt,
+		semithick},
+	every label/.style={phantom,align=left},
+	world/.style = {circle,draw,minimum size=0.5cm,fill=gray!15},
+	modal every node/.style={world},
+	point/.style={circle,draw,inner sep=0.5mm,fill=black},
+	phantom/.style={rectangle,inner sep=0pt,draw=none,fill=none},
+	reflexive above/.style={->,loop,looseness=7,in=60,out=120},
+	reflexive below/.style={->,loop,looseness=7,in=240,out=300},
+	reflexive left/.style={->,loop,looseness=7,in=150,out=210},
+	reflexive right/.style={->,loop,looseness=7,in=30,out=330}
+}
+
+\DeclareDocumentCommand \mTrue { m }{\ensuremath{#1}}
+\DeclareDocumentCommand \mFalse { m }{\ensuremath{\lnot #1}}

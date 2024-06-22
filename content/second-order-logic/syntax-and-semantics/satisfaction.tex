@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{sol}{syn}{sat}
-
-\olsection{Satisfaction}
+\olsection{sol}{syn}{sat}{Satisfaction}
 
 \begin{explain}
 To define the satisfaction relation $\Sat{M}{!A}[s]$ for second-order
@@ -23,13 +21,13 @@ the first-order !!{variable}s, but also for the second-order !!{variable}s.
 A \emph{variable assignment}~$s$ for !!a{structure}~$\Struct{M}$ is a
 function which maps each
 \begin{enumerate}
-\item object !!{variable}~$\Obj{v_i}$ to an element of~$\Domain M$,
-  i.e., $s(\Obj{v_i}) \in \Domain{M}$
-\item $n$-place relation variable~$\Obj{V_i^n}$ to an $n$-place
-  relation on~$\Domain{M}$, i.e., $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$;
-\item $n$-place function variable~$\Obj{u_i^n}$ to an $n$-place
+\item object !!{variable}~$\Obj v_i$ to an element of~$\Domain M$,
+  i.e., $s(\Obj v_i) \in \Domain{M}$
+\item $n$-place relation variable~$\Obj V_i^n$ to an $n$-place
+  relation on~$\Domain{M}$, i.e., $s(\Obj V_i^n) \subseteq \Domain{M}^n$;
+\item $n$-place function variable~$\Obj u_i^n$ to an $n$-place
   function from $\Domain{M}$ to $\Domain{M}$, i.e.,
-  $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$;
+  $s(\Obj u_i^n)\colon \Domain{M}^n \to \Domain{M}$;
 \end{enumerate}
 \end{defn}
 

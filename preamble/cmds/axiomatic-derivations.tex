@@ -1,0 +1,28 @@
+% Axiomatic Derivations
+% ---------------------
+
+% - `\MP`: produces abbreviation for Modus Ponens.
+
+\DeclareDocumentMacro \MP {\textsc{mp}}
+
+% - `\QR`: produces abbreviation for Quantifier Rule.
+
+\DeclareDocumentMacro \QR {\textsc{qr}}
+
+% - `\Hyp`: produces abbreviation for Hypothesis.
+
+\DeclareDocumentMacro \Hyp {\textsc{Hyp}}
+
+% - `\sFmla`: Signed (prefixed) formulas in running text
+
+\DeclareDocumentCommand \sFmla { m m o }{
+	\ensuremath{%
+		\IfNoValueTF{#3}{}{#3\,}%
+		\hbox to.8em{\ensuremath{#1}\hfil} #2}}
+
+% - `\pFmla`: signed prefixed formulas for tableaux
+
+\DeclareDocumentCommand \pFmla { m m m }{
+	\ensuremath{%
+		\hskip 3em{\llap{$#3$}\,}%
+		\hbox to1.3em{\ensuremath{#1}\hfil} #2}}

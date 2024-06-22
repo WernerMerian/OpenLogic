@@ -6,12 +6,13 @@
 
 \begin{document}
 
-\olfileid{sfr}{fun}{kin}
-\olsection{Kinds of Functions}
+\olsection{sfr}{fun}{kin}{Kinds of Functions}
 
 \begin{explain}
 It will be useful to introduce a kind of taxonomy for some of the
-kinds of functions which we encounter most frequently. 
+kinds of functions which we encounter most frequently.
+
+\todo[inline]{En vrai j'aurais d'avord commencé par injectif, puis surjectif}
 
 To start, we might want to consider functions which have the property
 that every member of the codomain is a value of the function. Such
@@ -19,7 +20,17 @@ functions are called !!{surjective}, and can be pictured as in
 \olref{fig:surjective}.
 
 \begin{figure}
-  \olasset{assets/diagrams/surjective.tikz}
+  \centering
+  \begin{subfigure}{0.49\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/injective-non-surjective.tikz}
+  	\caption{A non surjective application}
+  \end{subfigure}
+  \begin{subfigure}{0.49\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/surjective-non-injective.tikz}
+  	\caption{A surjective application}
+  \end{subfigure}
   \caption{!!^a{surjective} function has every !!{element} of the
     codomain as a value.}
   \ollabel{fig:surjective}
@@ -54,7 +65,17 @@ there are also functions which never map different inputs to the same
 outputs. Such functions are called !!{injective}, and can be pictured
 as in \olref{fig:injective}.
 \begin{figure}
-  \olasset{assets/diagrams/injective.tikz}
+  \centering
+  \begin{subfigure}{0.49\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/injective-non-surjective.tikz}
+  	\caption{An injective application}
+  \end{subfigure}
+  \begin{subfigure}{0.49\linewidth}
+  	\centering
+  	\olasset{\olpath/assets/tikzpictures/sets-functions-relations/surjective-non-injective.tikz}
+  	\caption{A non injective application}
+  \end{subfigure}
   \caption{!!^a{injective} function never maps two different
     arguments to the same value.}
   \ollabel{fig:injective}
@@ -102,7 +123,8 @@ Often enough, we want to consider functions which are both
 \emph{one-to-one correspondences}, since they uniquely pair elements
 of the codomain with elements of the domain.
 \begin{figure}
-  \olasset{assets/diagrams/bijective.tikz}
+  \centering
+  \olasset{\olpath/assets/tikzpictures/sets-functions-relations/bijective.tikz}
   \caption{!!^a{bijective} function uniquely pairs the elements of the
     codomain with those of the domain.}
   \ollabel{fig:bijective}

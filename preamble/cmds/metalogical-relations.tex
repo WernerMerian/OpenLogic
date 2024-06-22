@@ -1,0 +1,260 @@
+% Metalogical Relations
+% ---------------------
+%
+% Metalogical relationships, such as truth in a structure, validity,
+% consequence, and provability, are also provided as commands. Uniform
+% use of these commandsinstead of hard-coded typesetting according to
+% specific conventions guarantees that by changing the definitions
+% below you can uniformly change notation in the text.
+
+
+% ### Substitution
+
+% -`\subst{t}{x}`: typeset the substitution notation
+
+\DeclareDocumentCommand \subst { m m } {#1/#2}
+
+% - `\SSubst{A}{s}`: typeset simultaneous substitution (expects $s$ to
+% be a list of `\subst{t}{x}` expressions, say)
+
+\DeclareDocumentCommand \SSubst { m m } {
+	#1[#2]}
+
+% - `\Subst{!A}{t}{x}`: The operation of substituting a term for a
+% (free) variable in another term or in a formula.  The default is
+% $\varphi[x/t]$, other common notations are $\varphi^t_x$,
+% $\varphi\{t \rightarrow x\}$, or $S^t_x \varphi$.
+
+\DeclareDocumentCommand \Subst { m m m } {
+	#1[\subst{#2}{#3}]}
+
+% ### pre-Substitution
+
+\DeclareDocumentCommand \pSubst { m m m } {
+	#1[#2/#3]^{-}
+}
+
+% ### The satisfaction/truth relation 
+
+% - `\Sat[/]{M}{!A}[s]`, the relation of being satisfied in a
+% structure (relative to an assignment), is provided as the command
+% `\Sat` with two mandatory arguents (the structure and the formula)
+% and one optional argument (the assignment).  Use `\Sat/` to create
+% the negated relation.  By default, `\Sat{M}{!A}[s]` is typeset as
+% $\mathfrak{M}, s \models \varphi$.
+
+\DeclareDocumentCommand \Sat { t{/} m m o } {
+	\IfBooleanTF{#1}{
+		% negated
+		\IfNoValueTF {#4} 
+		{ \Struct{#2} \nvDash #3 }
+		{ \Struct{#2}, #4 \nvDash #3}}{
+		% not negated
+		\IfNoValueTF {#4} 
+		{ \Struct{#2} \vDash #3 }
+		{ \Struct{#2}, #4 \vDash #3 }}
+}
+
+% ### The derivability relation
+
+% `\Proves[L]` is used to create the symbol for the derivability
+% relation, `\Proves/` for the negation. By default this creates
+% $\vdash$; e.g., `\Gamma \Proves !A` yields $\Gamma \vdash
+% \varphi$. An optional argument may be used for the calculus or logic
+% relative to which the provability relation is defined; by default it
+% creates a subscript on the turnstile.
+
+\DeclareDocumentCommand \Proves { t{/} o } {
+	\IfBooleanTF {#1}{
+		\IfNoValueTF {#2} 
+		{ \nvdash }
+		{ \nvdash_{#2} }}{
+		\IfNoValueTF {#2} 
+		{ \vdash }
+		{ \vdash_{#2} }}
+}
+
+% - `\Thms{X}`: theorems a set of formulas
+
+\DeclareDocumentCommand \Thms { m } {\mathrm{Thm}(#1)}
+
+% - `\PAx`: the set of propositional axioms
+
+\DeclareDocumentMacro \PAx { \mathrm{Ax}_0 }
+
+% ### The semantic consequence relation relation
+
+% `\Entails` is the semantic counterpart of `\Proves` and defaults to
+% $\vDash$. It also takes an optional `/` for $\nvDash$ and an
+% optional argument for a subscript.
+
+\DeclareDocumentCommand \Entails { t{/} o } {
+	\IfBooleanTF {#1}{
+		\IfNoValueTF {#2} 
+		{ \nvDash }
+		{ \nvDash_{#2} }}{
+		\IfNoValueTF {#2} 
+		{ \vDash }
+		{ \vDash_{#2} }}
+}
+
+
+% ### Model-theoretic notions and symbols
+
+% - `\Domain{M}` - domain of a structure, e.g., `\Domain{M}` gives
+% $\left|\mathfrak M\right|$.
+
+\DeclareDocumentCommand \Domain { m }{\left| \Struct{#1} \right|}
+
+% - `\Assign{R}{M}` - Assignment (value of) of a constant/predicate symbol
+% in a structure; e.g., `\Assign{R}{M}` produces $R^\mathfrak{M}$.
+
+\DeclareDocumentCommand \Assign { m m }{\mathord{#1^{\Struct{#2}}}}
+
+% - `\varAssign{s'}{s}{x}[o]` - Assignment variant. Takes three mandatory
+% argument (s' differs from s at most at x) and one optional one (s' assigns
+% o to x. Default: `\varAssign{s'}{s}{x}` produces `s' \sim_{x} s`
+% and `\varAssign{s'}{s}{x}[o] produces `s' = s[o/x]`.
+
+\DeclareDocumentCommand \varAssign { m m m o } {
+	\IfNoValueTF {#4}
+	% optional argument not present
+	{ #1 \sim_{#3} #2 }
+	% optional argument present
+	{ #1 = #2[^{#4}/{#3}] }
+}
+
+% - `\Value{t}{M}[s]` - Value of a term in a structure. Takes two mandatory
+% arguments (term and structure) and one optional argument (variable
+% assignment). By default, `\Value{t}{M}[s]` produces 
+% $\mathrm{Val}^\mathfrak{M}_s(t)$.
+
+\DeclareDocumentCommand \Value { m m o} {
+	\IfNoValueTF {#3}
+	% optional argument not present
+	{ \mathrm{Val}^{\Struct{#2}}(#1) }
+	% optional argument present
+	{ \mathrm{Val}^{\Struct{#2}}_{#3}(#1) }
+}
+
+% - `\pAssign{v}` - Typeset a truth-value assignment
+
+\DeclareDocumentCommand \pAssign { m } {\applytofirst{\mathfrak}{#1}}
+
+% - `\pValue{v}(A)[L]` - Truth value of a formula under a truth-value assignment.
+
+\DeclareDocumentCommand \pValue { m d() o}{
+	\overline{\pAssign{#1}}%
+	\IfNoValueTF{#3}{}{_{#3}}%
+	\IfNoValueTF {#2}{}{(#2)}
+}
+
+% - `\pSat[/]{v}{!A}[L]`, the relation of being satisfied by a
+% truth-value assignment in a logic L.
+
+\DeclareDocumentCommand \pSat { t{/} m m o } {
+	\pAssign{#2} 
+	\IfBooleanTF{#1}{\nvDash}{\vDash}%
+	\IfNoValueTF{#4}{}{_{#4}}
+	#3
+}
+
+% - `\tf{\star}[L]`: truth function for $\star$ in $\mathbf{L}$
+
+\DeclareDocumentCommand \tf { m o } {
+	\widetilde{#1}%
+	\IfNoValueTF{#2}{}{_{#2}}
+}
+
+
+% - `\substruct`: symbol for the substructure relation
+
+\DeclareDocumentMacro \substruct {\subseteq}
+
+% - `\Theory{M}`: theory of a structure
+
+\DeclareDocumentCommand \Theory { m } {\mathrm{Th}(\Struct{#1})}
+
+% - `\Mod[L](L'){T}`: class of models of a theory/sentence $T$ in a
+% language $\mathcal{L}$ and logic $L'$.
+
+\DeclareDocumentCommand \Mod { o d() m } {
+	\IfNoValueTF {#2} {
+		% optional logic argument not present
+		\IfNoValueTF {#1}{
+			\mathrm{Mod}(#3) }{
+			\mathrm{Mod}^{\Lang{#1}}(#3) }}{
+		% optional logic argument present
+		\IfNoValueTF {#1}{
+			\mathrm{Mod}_{#2}(#3)}{
+			\mathrm{Mod}_{#2}^{\Lang{#1}}(#3)}}
+}
+
+
+% - `\elemequiv`: elementary equivalence (infix relation)
+
+\DeclareDocumentCommand \elemequiv { t{/} o } {
+	\IfBooleanTF {#1}{
+		\IfNoValueTF {#2} 
+		{ \not\equiv }
+		{ \not\equiv_{#2} }}{
+		\IfNoValueTF {#2} 
+		{ \equiv }
+		{ \equiv_{#2} }}
+}
+
+% - `\eqc`: the equivalence class the element (first argument) belongs
+% to; second argument is used to mark the equivalence relation if
+% there's more than one
+
+\DeclareDocumentCommand \eqc { m o } {
+	\IfNoValueTF {#2}
+	{[#1]}
+	{[#1]_{#2}}
+}
+
+% - `\rep`: the representative of an equivalence class, the second
+% argument is used to mark the equivalence relation if there's more
+% than one
+
+\DeclareDocumentCommand \rep { m o } {
+	\IfNoValueTF {#2}
+	{\underline{#1}}
+	{{\underline{#1}}_{#2}}
+}
+
+% - `\iso[/][p]`: relation of being (partially) isomorphic
+
+\DeclareDocumentCommand \iso { t{/} o } {
+	\IfBooleanTF {#1}{
+		\IfNoValueTF {#2} 
+		{ \not\simeq }
+		{ \not\simeq_{#2} }}{
+		\IfNoValueTF {#2} 
+		{ \simeq }
+		{ \simeq_{#2} }}
+}
+
+
+
+% - `\ident`: syntactic identity between expressions (infix relation),
+
+\DeclareDocumentMacro \ident {\equiv}
+
+% - `\QuantRank{!A}`: quantifier rank of a formula
+
+\DeclareDocumentCommand \QuantRank { m } {\mathrm{qr}(#1)}
+
+% - `\Expan{M}{R}`: expansion of a structure by a relation (etc.)
+
+\DeclareDocumentCommand \Expan { m m } {(\Struct{#1}, #2)}
+
+% `\nssucc`, `\nsplus`, `\nstimes`, `\nsless`: non-standard
+% arithmetical operations
+
+\DeclareDocumentMacro \nszero {\mathbf{z}}
+\DeclareDocumentMacro \nssucc {*}
+\DeclareDocumentMacro \nsplus {\oplus}
+\DeclareDocumentMacro \nstimes {\otimes}
+\RequirePackage{stmaryrd}
+\DeclareDocumentMacro \nsless {\varolessthan}

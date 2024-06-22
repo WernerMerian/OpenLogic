@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{cnt}{min}{cpo}
-
-\olsection{Contraposition}
+\olsection{cnt}{min}{cpo}{Contraposition}
 
 Material and strict conditionals are equivalent to their
 contrapositives. Counterfactuals are not.  Here is an example due to
@@ -33,26 +31,10 @@ alive, and so couldn't have died in 1832.
   (close) world where Goethe died in, say, 1833, and is still dead;
   and $w_2$ is a (remote) world where Goethe is still alive.
 \begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=.6,layerwidth=1.5]\tiny
-  \spheresystem{3}
-  \begin{scope}
-    \clip \propositionplot{0}{.8}{50}{4.5} -- (4.5,-4.5) -- (-4.5,-4.5) -- (-4.5,4.5) -- (4.5,4.5);
-    \spherelayer{3}
-  \end{scope}
-  \propositionintersect{0}{2}{110}{5.5}
-  \proposition{0}{.8}{50}{4.5}
-  \path (0,0) node[world] {$w$};
-  \spherepos{0}{2}{node[world] {$w_1$}}
-  \spherepos{-50}{3}{node[world] {$w_2$}}
-  \spherepos{28}{3}{node {$q$}}
-  \spherepos{42}{3}{node {$\lnot q$}}
-  \spherepos{-55}{4}{node {$p$}}
-  \spherepos{-67}{4}{node {$\lnot p$}}
-\end{tikzpicture}
+\centering
+\olasset{\olpath/assets/tikzpictures/counterfactuals/contraposition.tikz}
 \caption{Counterexample to contraposition}
 \ollabel{fig:contraposition}
-\end{center}
 \end{figure}
 There is a $p$-admitting sphere $S =
 \{w, w_1\}$ and $p \lif q$ is true at all worlds in it, so $\mSat{M}{p

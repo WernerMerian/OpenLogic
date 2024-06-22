@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{nml}{frd}{acc}
-
-\olsection{Properties of Accessibility Relations}
+\olsection{nml}{frd}{acc}{Properties of Accessibility Relations}
 
 Many modal !!{formula}s turn out to be characteristic of simple, and
 even familiar, properties of the accessibility relation. In one
@@ -74,16 +72,8 @@ relations and the formulas the truth of which they guarantee.
 \end{prob}
 
 \begin{figure}
-  \begin{center}
-    \begin{tikzpicture}[modal]
-      \node[world] (w1) [label={below:$\mSat{{}}{\formula{A}}$\\
-          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$}; 
-      \node[world] (w2) [label=below:{$\mSat{{}}{\Diamond \formula{A}}$},
-        right=of w1] {$w'$}; 
-      \draw[->, bend left] (w1) to (w2); 
-      \draw[->, bend left] (w2) to (w1); 
-    \end{tikzpicture}
-  \end{center}
+\centering
+\olasset{\olpath/assets/tikzpictures/normal-modal-logic/Bsymm.tikz}
 \caption{The argument from symmetry.}
 \ollabel{fig:Bsymm}
 \end{figure}

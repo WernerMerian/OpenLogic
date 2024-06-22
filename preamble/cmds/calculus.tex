@@ -1,0 +1,70 @@
+% Sets of Expressions
+% ===================
+%
+% The following commands provide uniform notation for sets of
+% expressions, such as the set of formulas of a language. Typically
+% the parameter (language) can be provided as an optional argument.  By
+% default, if the argument is given, they are typeset following the
+% symbol within parentheses, i.e., the symbols are treated as
+% operators (e.g., $\mathrm{Frm}(\mathcal{L})$. Redefine the commands
+% to, e.g., typeset the parameters as subscripts (e.g.,
+% $\mathrm{Frm}_\mathcal{L}$.
+
+% - `\Var`: the set of individual variables
+
+\DeclareDocumentMacro \Var { \mathrm{Var} }
+
+% - `\PVar`: the set of propositional variables
+
+\DeclareDocumentMacro \PVar { \mathrm{At}_0 }
+
+% - `\Trm[L]`: the set of terms (of a language)
+
+\DeclareDocumentCommand \Trm { o } {
+	\IfNoValueTF {#1} 
+	{ \mathrm{Trm} }
+	{ \mathrm{Trm}({\Lang #1}) }
+}
+
+% - `\Frm[L]`: the set of formulas (of a language)
+\DeclareDocumentCommand \Frm { o } {
+	\IfNoValueTF {#1} 
+	{ \mathrm{Frm} }
+	{ \mathrm{Frm}({\Lang #1}) }
+}
+
+% - `\Trm2[L]`: the set of second-order terms (of a language)
+
+\DeclareDocumentCommand \TrmSOL { o } {
+	\IfNoValueTF {#1} 
+	{ \mathrm{Trm}^2 }
+	{ \mathrm{Trm}^2({\Lang #1}) }
+}
+
+% - `\Frm2[L]`: the set of second-order formulas (of a language)
+\DeclareDocumentCommand \FrmSOL { o } {
+	\IfNoValueTF {#1} 
+	{ \mathrm{Frm}^2 }
+	{ \mathrm{Frm}^2({\Lang #1}) }
+}
+
+% - `\SubFrm{!A}`: the set of subformulas of a formula (mandatory
+% argument: formula)
+
+\DeclareDocumentCommand \SubFrm { m } {
+	\mathrm{SFrm}({#1})
+}
+
+% - `\FV{!A}`: set of free variables of a formula or term
+
+\DeclareDocumentCommand \FV { m } {
+	\mathrm{FV}({#1})
+}
+
+
+% - `\Sent[L]`: the set of sentences (of a language)
+\DeclareDocumentCommand \Sent { o } {
+	\IfNoValueTF {#1} 
+	{ \mathrm{Sent} }
+	{ \mathrm{Sent}({\Lang{#1}}) }
+}

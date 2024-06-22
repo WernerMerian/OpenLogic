@@ -1,0 +1,21 @@
+% License boxes
+
+\newcommand*{\ollicensefont}{\sffamily\fontsize{9pt}{12pt}\selectfont}
+
+\newcommand*{\ollicense}{%
+	\begin{minipage}[b]{1.2cm}%
+		\includegraphics[width=1.2cm]{\olpath/assets/logos/by}%
+		\includegraphics[width=1.2cm]{\olpath/assets/logos/cc}%
+	\end{minipage}%
+	\hspace{.3cm}%
+	\begin{minipage}[b]{3.5cm}%
+		\ollicensefont%
+		\textit{%
+			\href{https://github.com/OpenLogicProject/OpenLogic}{The Open Logic Text}} by the \href{http://openlogicproject.org/}{Open Logic Project} is licensed under a \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License.%
+		}%
+	\end{minipage}%
+	\hfill%
+	\href{http://openlogicproject.org/}{%
+		\includesvg[width=2.4cm]{\olpath/assets/logos/openlogic-logo-bw}%
+	}
+}

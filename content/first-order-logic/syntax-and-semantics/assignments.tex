@@ -6,9 +6,7 @@
 
 \begin{document}
 
-\olfileid{fol}{syn}{ass}
-
-\olsection{Variable Assignments}
+\olsection{fol}{syn}{ass}{Variable Assignments}
 
 \begin{explain}
 A !!{variable} assignment~$s$ provides a value for \emph{every}
@@ -39,18 +37,18 @@ By induction on the complexity of~$t$. For the base case, $t$ can be
 $t = x_i$, $s_1(x_i) = s_2(x_i)$ by the hypothesis of the proposition,
 and so $\Value{t}{M}[s_1] = s_1(x_i) = s_2(x_i) = \Value{t}{M}[s_2]$.
 
-For the inductive step, assume that $t = \Atom{f}{t_1, \dots, t_k}$
+For the inductive step, assume that $t = \Term{f}{t_1, \dots, t_k}$
 and that the claim holds for $t_1$, \dots, $t_k$. Then
 \begin{align*}
-  \Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] =\\
+  \Value{t}{M}[s_1] & = \Value{\Term{f}{t_1, \dots, t_k}}{M}[s_1] \\
   & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1])
 \intertext{For $j = 1$, \dots,~$k$, the !!{variable}s of~$t_j$ are
     among $x_1$, \dots,~$x_n$. By induction hypothesis,
     $\Value{t_j}{M}[s_1] = \Value{t_j}{M}[s_2]$. So,}
-\Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] =\\
-  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]) =\\
-  & = \Assign{f}{M}(\Value{t_1}{M}[s_2], \dots, \Value{t_k}{M}[s_2]) =\\
-  & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_2] = \Value{t}{M}[s_2].
+\Value{t}{M}[s_1] & = \Value{\Term{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]) \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_2], \dots, \Value{t_k}{M}[s_2]) \\
+  & = \Value{\Term{f}{t_1, \dots, t_k}}{M}[s_2] = \Value{t}{M}[s_2].
 \end{align*}
 \end{proof}
 

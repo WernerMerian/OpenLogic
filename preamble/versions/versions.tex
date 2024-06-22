@@ -1,0 +1,34 @@
+% file: versions.tex
+
+
+
+%----- DEBUG -----%
+
+\newif\ifdebug
+
+% we make debug mode as the default mode. This is for the compilation
+% of the section files that are launched without any `-pretex' code
+% (as opposed to master compilation, for more information check the
+% Makefile)
+
+\debugtrue
+
+
+%----- DRAFT -----%
+
+\newif\ifdraft
+
+\draftfalse
+
+
+%----- VERSION CHOICE -----%
+
+\AtBeginDocument{
+	\ifdraft
+		\input{\olpath/preamble/versions/draft.tex}
+	\else\ifdebug
+		% as debug mode is true by default, we must end the switch with it
+		\input{\olpath/preamble/versions/debug.tex}
+	\else
+	\fi
+}

@@ -1,0 +1,16 @@
+% OpenLogic Project
+% Package for lettrines
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesFile{lettrine.sty}
+
+
+
+\RequirePackage{lettrine}
+
+
+
+\def\ollettrine #1#2 {% note the space before {
+	\lettrine{#1}{#2} % a trailing space
+}

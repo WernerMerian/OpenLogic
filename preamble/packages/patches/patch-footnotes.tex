@@ -1,0 +1,336 @@
+\makeatletter
+
+\AtBeginDocument{
+
+% compteur pour les marques des appels de notes de bas de page dans le contenu
+% principal
+\@definecounter {footnotemark}
+\def \thefootnotemark{\@arabic\c@footnotemark}
+% compteur pour les marques des notes de bas de page dans le contenu principal
+\@definecounter {footnotetext}
+\def \thefootnotetext{\@arabic\c@footnotetext}
+
+% compteur pour les marques des appels de notes de bas de page dans le contenu
+% d'une minipage
+\@definecounter {mpfootnotemark}
+\def \thempfootnotemark{{\itshape\@alph\c@mpfootnotemark}}
+% compteur pour les marques des notes de bas de page dans le contenu d'une
+% minipage
+\@definecounter {mpfootnotetext}
+\def \thempfootnotetext{{\itshape\@alph\c@mpfootnotetext}}
+
+% macro qui permet de récupérer le mot "footnotemark" (resp. "mpfootnotemark")
+% en toute lettre lorsque le contenu courant est le contenu principal (resp. le
+% contenu d'une minipage)
+\def \@mpfnm{footnotemark}
+% macro qui permet de récupérer le mot "footnotetext" (resp. "mpfootnotetext")
+% en toute lettre lorsque le contenu courant est le contenu principal (resp. le
+% contenu d'une minipage)
+\def \@mpfnt{footnotetext}
+
+% macro qui permet d'imprimer la valeur du compteur "footnotemark" (resp.
+% "mpfootnotemark") lorsque le contenu courant est le contenu principal (resp.
+% le contenu d'une minipage)
+\def \thempfnm{\thefootnotemark}
+% macro qui permet d'imprimer la valeur du compteur "footnotetext" (resp.
+% "mpfootnotetext") lorsque le contenu courant est le contenu principal (resp.
+% le contenu d'une minipage)
+\def \thempfnt{\thefootnotetext}
+
+
+
+\@ifpackageloaded{hyperref}%
+{%
+    \newcounter{Hfootnotemark}
+    \newcounter{Hfootnotetext}
+}{}
+
+
+
+\def \footnote{%
+    \@ifnextchar [%
+        \@xfootnote%
+    {%
+        \footnotemark%
+        \footnotetext%
+    }%
+}
+
+\def \@xfootnote[#1]{%
+    \@xfootnotemark[#1]%
+    \@xfootnotetext[#1]%
+}
+
+\def \footnotemark{%
+    %a%
+    \@ifnextchar [%
+    {%
+        %a%
+        \@xfootnotemark%
+    }%
+    {%
+        \stepcounter \@mpfnm%
+        \protected@xdef \@thefnmmark{\thempfnm}%
+        \@ifpackageloaded{hyperref}%
+        {%
+            \stepcounter {Hfootnotemark}%
+            \setcounter {Hfootnote} {\theHfootnotemark}%
+        }{}%
+        \@footnotemark%
+    }%
+}
+
+\def \@xfootnotemark[#1]{%
+    \begingroup%
+        \csname c@\@mpfnm\endcsname #1\relax%
+        \unrestored@protected@xdef \@thefnmmark{\thempfnm}%
+    \endgroup%
+    \@ifpackageloaded{hyperref}%
+    {%
+        \setcounter {Hfootnote} {#1}%
+    }{}%
+    \@footnotemark%
+}
+
+\def \@footnotemark{%
+    \leavevmode%
+    \ifhmode%
+        \edef \@x@sf{\the \spacefactor}%
+        \nobreak%
+    \fi%
+    \@makefnmmark%
+    \ifhmode%
+        \spacefactor%
+        \@x@sf%
+    \fi%
+    \relax%
+}
+
+\@ifpackageloaded{hyperref}%
+{%
+    \let \H@@footnotemark \@footnotemark%
+
+    \def \@footnotemark{%
+        \global \let \Hy@saved@currentHref \@currentHref%
+        \hyper@makecurrent {Hfootnote}%
+        \global \let \Hy@footnote@currentHref \@currentHref%
+        \global \let \@currentHref \Hy@saved@currentHref%
+        \leavevmode%
+        \ifhmode%
+            \edef \@x@sf{\the \spacefactor}%
+            \nobreak%
+        \fi%
+        \hyper@linkstart {link} {\Hy@footnote@currentHref}%
+        \@makefnmmark%
+        \hyper@linkend%
+        \ifhmode%
+            \spacefactor%
+            \@x@sf%
+        \fi%
+        \relax%
+    }%
+}{}%
+
+\def \@makefnmmark{%
+    \hbox{\@textsuperscript{\normalfont \@thefnmmark}}%
+}
+
+% Bon à partir de maintenant on arrête les conneries, on nomme bien la macro
+% "\@xfootnotetext" et pas "\@xfootnotenext" comme les autres dyslexiques.
+
+\def \footnotetext{%
+    \@ifnextchar [%
+        \@xfootnotetext%
+    {%
+        \stepcounter \@mpfnt%
+        \protected@xdef \@thefntmark{\thempfnt}%
+        \@ifpackageloaded{hyperref}%
+        {%
+            \stepcounter {Hfootnotetext}%
+            \setcounter {Hfootnote} {\theHfootnotetext}%
+        }{}%
+        \@footnotetext%
+    }%
+}
+
+\def \@xfootnotetext[#1]{%
+    \begingroup%
+        \csname c@\@mpfnt\endcsname #1\relax
+        \unrestored@protected@xdef \@thefntmark{\thempfnt}%
+    \endgroup%
+    \@ifpackageloaded{hyperref}%
+    {%
+        \setcounter {Hfootnote} {#1}%
+    }{}%
+    \@footnotetext%
+}
+
+\long \def \@footnotetext#1{%
+    \insert \footins{%
+        \reset@font%
+        \footnotesize%
+        \interlinepenalty \interfootnotelinepenalty%
+        \splittopskip \footnotesep%
+        \splitmaxdepth \dp \strutbox%
+        \floatingpenalty \@MM%
+        \hsize \columnwidth%
+        \@parboxrestore%
+        \def \@currentcounter{footnotetext}%
+        \protected@edef \@currentlabel{%
+            \csname p@footnotetext\endcsname \@thefntmark%
+        }%
+        \color@begingroup
+            \@makefntext{%
+                \rule\z@%
+                \footnotesep%
+                \ignorespaces #1%
+                \@finalstrut%
+                \strutbox%
+            }%
+            \par%
+        \color@endgroup%
+    }%
+}
+
+\@ifpackageloaded{hyperref}%
+{%
+    \let \H@@footnotetext \@footnotetext%
+
+    \long \def \@footnotetext#1{%
+        \global \let \Hy@saved@currentHref \@currentHref%
+        \hyper@makecurrent {Hfootnote}%
+        \global \let \Hy@footnote@currentHref \@currentHref%
+        \global \let \@currentHref \Hy@saved@currentHref%
+        \H@@footnotetext{%
+            \ifHy@nesting%
+                \expandafter \ltx@firstoftwo%
+            \else%
+                \expandafter \ltx@secondoftwo%
+            \fi%
+            {%
+                \expandafter \hyper@@anchor \expandafter{%
+                    \Hy@footnote@currentHref%
+                }{\ignorespaces #1}%
+            }{%
+                \Hy@raisedlink{%
+                    \expandafter \hyper@@anchor \expandafter{%
+                        \Hy@footnote@currentHref%
+                    }{\relax}%
+                }%
+                \let \@currentHref \Hy@footnote@currentHref%
+                \let \@currentlabelname \@empty%
+                \ignorespaces #1%
+            }%
+        }%
+    }%
+}{}%
+
+\long \def \@mpfootnotetext#1{%
+    \global \setbox \@mpfootins \vbox {%
+        \unvbox \@mpfootins%
+        \reset@font%
+        \footnotesize%
+        \hsize \columnwidth%
+        \@parboxrestore%
+        \def \@currentcounter{footnotetext}%
+        \protected@edef \@currentlabel{%
+            \csname p@footnotetext\endcsname \@thefntmark%
+        }%
+        \color@begingroup
+            \@makefntext{%
+                \rule\z@%
+                \footnotesep%
+                \ignorespaces #1%
+                \@finalstrut%
+                \strutbox%
+            }%
+            \par%
+        \color@endgroup%
+    }%
+}
+
+\@ifpackageloaded{hyperref}%
+{%
+    \let \H@@mpfootnotetext \@mpfootnotetext%
+
+    \long \def \@mpfootnotetext#1{%
+        \global \let \Hy@saved@currentHref \@currentHref%
+        \hyper@makecurrent {Hfootnote}%
+        \global \let \Hy@footnote@currentHref \@currentHref%
+        \global \let \@currentHref \Hy@saved@currentHref%
+        \H@@mpfootnotetext{%
+            \ifHy@nesting%
+                \expandafter \ltx@firstoftwo%
+            \else%
+                \expandafter \ltx@secondoftwo%
+            \fi%
+            {%
+                \expandafter \hyper@@anchor \expandafter{%
+                    \Hy@footnote@currentHref%
+                }{\ignorespaces #1}%
+            }{%
+                \Hy@raisedlink{%
+                    \expandafter \hyper@@anchor \expandafter{%
+                        \Hy@footnote@currentHref%
+                    }{\relax}%
+                }%
+                \ignorespaces #1%
+            }%
+        }%
+    }%
+}{}%
+
+\def \@makefntext#1{%
+    \parindent 1em%
+    \noindent%
+    \hb@xt@ 1.8em{\hss \@makefntmark}%
+    #1%
+}
+
+\def \@makefntmark{%
+    \hbox{\@textsuperscript{\normalfont \@thefntmark}}%
+}
+
+\newif\if@in@minipage@env
+
+\def \@iiiminipage#1#2[#3]#4{%
+    \leavevmode%
+    \@pboxswfalse%
+    \setlength \@tempdima{#4}%
+    \def \@mpargs{{#1}{#2}[#3]{#4}}%
+    \setbox \@tempboxa \vbox \bgroup%
+        \color@begingroup%
+            \hsize \@tempdima%
+            \textwidth \hsize%
+            \columnwidth \hsize%
+            \if@in@minipage@env%
+                \ifvoid \@mpfootins%
+                \else%
+                    \@latex@warning{Nested minipage: footnotes may be%
+                    misplaced}%
+                \fi%
+            \else%
+                \@in@minipage@envtrue%
+            \fi%
+            \@parboxrestore%
+            \def \@mpfnm{mpfootnotemark}%
+            \def \thempfnm{\thempfootnotemark}%
+            \c@mpfootnotemark \z@%
+            \def \@mpfnt{mpfootnotetext}%
+            \def \thempfnt{\thempfootnotetext}%
+            \c@mpfootnotetext \z@%
+            \let \@footnotetext \@mpfootnotetext%
+            \let \@listdepth \@mplistdepth%
+            \@mplistdepth \z@%
+            \@minipagerestore%
+            \@setminipage%
+% ATTENTION: les fermetures de groupes "\color@endgroup" et "\egroup" ne sont
+% pas oubliées (rappel: on est en profondeur de la définition de "\minipage",
+% donc de la macro qui débute l'environnement "minipag"), elles sont inclues
+% dans la macro "\endminipage", donc faut pas les ajouter ici sinon erreur.
+}
+
+}
+
+
+\makeatother
